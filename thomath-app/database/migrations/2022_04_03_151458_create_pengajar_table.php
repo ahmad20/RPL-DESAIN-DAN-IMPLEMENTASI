@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('password');
-            $table->unsignedBigInteger('id_konsultasi');
+            $table->unsignedBigInteger('id_konsultasi')->unique();
             $table->foreign('id_konsultasi')->references('id_konsultasi')->on('konsultasi');
             $table->timestamps();
         });

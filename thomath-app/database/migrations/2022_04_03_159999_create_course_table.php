@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('material');
             $table->unsignedBigInteger('created_by');
-            $table->foreign('material')->references('id_course_material')->on('course_material');
-            $table->foreign('created_by')->references('id_pengajar')->on('pengajar');
+            $table->foreign('material')->references('id_course_material')->on('course_material')->unique();
+            $table->foreign('created_by')->references('id_pengajar')->on('pengajar')->unique();
             $table->timestamps();
         });
     }

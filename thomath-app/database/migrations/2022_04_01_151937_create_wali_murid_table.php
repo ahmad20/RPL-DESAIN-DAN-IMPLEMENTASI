@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('no_hp');
-            $table->unsignedBigInteger('id_konsultasi');
+            $table->unsignedBigInteger('id_konsultasi')->unique();
             $table->foreign('id_konsultasi')->references('id_konsultasi')->on('konsultasi');
             $table->timestamps();
         });

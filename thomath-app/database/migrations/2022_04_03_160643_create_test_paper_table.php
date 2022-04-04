@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('id_test_paper');
             $table->string('name');
             $table->dateTime('due_date');
-            $table->unsignedBigInteger('id_course');
+            $table->unsignedBigInteger('id_course')->unique();
             $table->foreign('id_course')->references('id_course')->on('course');
             $table->timestamps();
         });
