@@ -13,13 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('konsultasi', function (Blueprint $table) {
-            $table->id('id_konsultasi');
+        Schema::create('pengajar', function (Blueprint $table) {
+            $table->id('id_pengajar');
+            $table->string('nip');
             $table->string('email');
-            $table->string('topik');
-            $table->string('tahun');
-            $table->string('tanggal');
-            $table->string('deskripsi');
+            $table->string('name');
+            $table->string('address');
+            $table->string('password');
+            $table->unsignedBigInteger('id_konsultasi');
+            $table->foreign('id_konsultasi')->references('id_konsultasi')->on('konsultasi');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('konsultasi');
+        Schema::dropIfExists('pengajar');
     }
 };
