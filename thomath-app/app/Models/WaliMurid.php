@@ -10,9 +10,10 @@ use Laravel\Sanctum\HasApiTokens;
 
 class WaliMurid extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
+    use Notifiable;
+    //HasApiTokens, HasFactory, 
     protected $table = 'wali_murid';
+    protected $primaryKey = 'id_wali_murid';
 
     /**
      * The attributes that are mass assignable.
@@ -20,10 +21,11 @@ class WaliMurid extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'nama',
+        'name',
         'email',
         'password',
-        'no_hp',
+        'phone_number',
+        'id_konsultasi'
     ];
 
     /**

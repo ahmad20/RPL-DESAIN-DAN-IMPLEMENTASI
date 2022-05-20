@@ -40,6 +40,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'siswa' => [
+            'driver' => 'session',
+            'provider' => 'siswas',
+        ],
+        'walimurid' => [
+            'driver' => 'session',
+            'provider' => 'walimurids',
+        ],
+        'pengajar' => [
+            'driver' => 'session',
+            'provider' => 'pengajars',
+        ],
     ],
 
     /*
@@ -63,6 +75,18 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'siswas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Siswa::class,
+        ],
+        'walimurids' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\WaliMurid::class,
+        ],
+        'pengajars' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Pengajar::class,
         ],
 
         // 'users' => [

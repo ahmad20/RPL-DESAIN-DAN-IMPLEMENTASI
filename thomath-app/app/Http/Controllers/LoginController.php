@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\WaliMurid;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -16,15 +17,22 @@ class LoginController extends Controller
         $email = $request->email;
         $password = $request->password;
 
-        $user = WaliMurid::where('email', '=', $email)->where('password','=', $password)->exists();
+        // $user = WaliMurid::where('email', '=', $email)->where('password','=', $password)->exists();
+        if(Auth::guard('walimurid')->attempt(['email' => $email, 'password' => $password])){
 
-
-        if ($user) {
-            return redirect()->intended('/dashboard')
-                        ->withSuccess('Signed in');
+             return redirect()->intended('walimurid/dashboard')
+                         ->withSuccess('Signed in');
         }
         else {
-            return redirect("login-wali")->withSuccess('Login details are not valid');
+            return redirect("walimurid/login")->withSuccess('Login details are not valid');
         }
+
+        // if ($user) {
+        //     return redirect()->intended('/dashboard')
+        //                 ->withSuccess('Signed in');
+        // }
+        // else {
+        //     return redirect("login-wali")->withSuccess('Login details are not valid');
+        // }
     }
 }

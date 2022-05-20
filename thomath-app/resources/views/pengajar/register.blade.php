@@ -34,9 +34,9 @@
     <div class="gambar">
         <a href="{{ url('/') }}"><img width="500" height="500" src="/image/thomath.png"></a>
     </div>
-    <h3><span class="head">Register Wali</span></h3>
+    <h3><span class="head">Register Pengajar</span></h3>
     <div>
-        <form method="POST" action="{{ url('walimurid/register') }}">
+        <form method="POST" action="{{ url('pengajar/register') }}">
             @csrf
             <input style="width: 30%; margin-left: 700px; margin-top: -410px;" type="text"
                 class="form-control @error('name') is-invalid @enderror" placeholder="Nama" name="name"
@@ -72,7 +72,7 @@
             @enderror
             <button type="submit" class="btn"
                 style="margin-left: 700px; margin-top:20px; background-color: rgb(185, 39, 39); border-radius: 5px; font-family: sans-serif; font-size: medium; color: white; width: 10%;">Daftar</button>
-            <br><span class="Daftar">Sudah punya akun?</span> <a href="{{ url('walimurid/login') }}"
+            <br><span class="Daftar">Sudah punya akun?</span> <a href="{{ url('pengajar/login') }}"
                 class="regist">Login</a>
         </form>
     </div>

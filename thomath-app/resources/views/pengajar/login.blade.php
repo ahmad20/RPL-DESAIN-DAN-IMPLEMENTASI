@@ -34,9 +34,9 @@
         </a>
         
       </div>
-      <h3><span class="head">Login Wali</span></h3>
+      <h3><span class="head">Login Pengajar</span></h3>
       <div class="row">
-        <form method="POST" action="{{ url('walimurid/login')}}">
+        <form method="POST" action="{{ url('pengajar/login')}}">
           @csrf
             <div class="mb-4">
               <input style="width: 30%; margin-left: 700px; margin-top: -390px;" type="text" class="form-control" placeholder="Email" name="email">
@@ -46,7 +46,7 @@
               <input style="width: 30%; margin-left: 700px;" type="password" class="form-control" id="myInput" placeholder="Password" name="password">
             </div>
             <button type="submit" class="btn" style="margin-left: 700px; margin-top:20px; background-color: rgb(185, 39, 39); border-radius: 5px; font-family: sans-serif; font-size: medium; color: white; width: 10%;">Login</button>
-            <br><span class="Daftar">Belum punya akun?</span> <a href="{{ url('walimurid/register') }}" class="regist">Register</a> 
+            <br><span class="Daftar">Belum punya akun?</span> <a href="{{ url('pengajar/register') }}" class="regist">Register</a> 
         </form>
     </div>
 </body>

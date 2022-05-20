@@ -8,17 +8,18 @@ use App\Models\WaliMurid;
 
 class RegisterController extends Controller
 {
-    public function registerWali(){
-        $this->validate(request(), [
-            'nama' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'no_hp' => 'required'
+    public function registerWali(Request $request){
+        $validated = $request->validate([
+            'name' => 'required|min:3|max:255',
+            'email' => 'required|email:dns|unique:wali_murid',
+            'password' => 'required|min:5',
+            'phone_number' => 'required|regex:/^(08)[0-9]{6,15}/'
         ]);
-        $user = WaliMurid::create(request(['nama', 'email', 'password', 'no_hp']));
+        $validated['password'] = bcrypt($validated['password']);
+        $user = WaliMurid::create($validated);
 
         auth()->login($user);
 
-        return redirect()->to('/dashboard');
+        return redirect()->to('walimurid/dashboard');
     }
 }

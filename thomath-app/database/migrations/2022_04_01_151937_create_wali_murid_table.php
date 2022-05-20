@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('wali_murid', function (Blueprint $table) {
             $table->id('id_wali_murid');
-            $table->string('nama');
+            $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('no_hp');
-            $table->unsignedBigInteger('id_konsultasi')->unique();
+            $table->string('phone_number');
+            $table->unsignedBigInteger('id_konsultasi')->unique()->nullable();
             $table->foreign('id_konsultasi')->references('id_konsultasi')->on('konsultasi');
             $table->timestamps();
         });

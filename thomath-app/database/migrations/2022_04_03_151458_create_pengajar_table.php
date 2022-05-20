@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('pengajar', function (Blueprint $table) {
             $table->id('id_pengajar');
-            $table->string('nip');
-            $table->string('email');
+            $table->string('nip')->nullable();
+            $table->string('email')->unique();
             $table->string('name');
-            $table->string('address');
+            $table->string('phone_number');
             $table->string('password');
-            $table->unsignedBigInteger('id_konsultasi')->unique();
+            $table->unsignedBigInteger('id_konsultasi')->unique()->nullable();
             $table->foreign('id_konsultasi')->references('id_konsultasi')->on('konsultasi');
             $table->timestamps();
         });
