@@ -1,56 +1,72 @@
 <?php
-
 namespace App\Http\Controllers;
-
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    /*class yang mengandung fungsi CRUD course*/
     public function index(){
-        //fungsi yang menampilkan halaman formulir course
-        //hanya dapat diakses oleh pengajar
+        /**
+         * @description Membuat public function bernama index yang akan menampilkan halaman formulir course
+        */
+        // $pengajar = Auth()->guard('pengajar')->user();
+        // $course = Course::where('created_by', $pengajar->id_pengajar)->get();
+        // return view('pengajar.dashboard', ['courses'=>$course]);
         return view('pengajar.course');
     }
-    public function store(Request $request){
-        /*fungsi menerima dan menyimpan request dari formulir*/
+    public function store(Request $request, $id_pengajar){
+        /**
+         * @description Membuat public function bernama store yang akan menerima dan menyimpan request dari formulir
+         * @param  Request $request
+         * @return view back
+        */
         //validasi request
         $validated = $request->validate([
-            //validasi kolom name dengan aturan required dan unique
-            'name' => 'required|unique:name',
+            'name' => 'required|unique:course', //validasi kolom name dengan aturan required dan unique
         ]);
+        
         //membuat course dengan parameter name
-        $course = Course::create(request(['name']));
+        $course = Course::create([
+            'name'=>$request->name,
+            'description' =>$request->description, 
+            'created_by'=>$id_pengajar
+        ]);
         //kembali ke halaman sebelumnya
-        return redirect()->back();
+        return redirect()->to('/pengajar/course-material')->with('course', $course->name);
     }
     public function edit($id){
-        /*fungsi menampilkan formulir edit*/
-        //mencari id course dan jika tidak ditemukan maka akan gagal
-        $course = Course::findOrFail($id);
-        //jika id ditemukan maka akan menuju halaman formulir edit course
-        return view('pengajar.editcourse', compact('course'));
+        /**
+         * @description Membuat public function bernama edit yang akan menampilkan formulir edit
+         * @param  int $id
+         * @return view back
+        */
+        $course = Course::findOrFail($id);//mencari id course dan jika tidak ditemukan maka akan gagal
+        return view('pengajar.editcourse', compact('course'));//jika id ditemukan maka akan menuju halaman formulir edit course
     }
     public function update(Request $request, $id){
-        /*fungsi menerima dan memperbaharui tabel course berdasarkan id*/
+        /**
+         * @description Membuat public function bernama update yang akan menerima dan memperbaharui tabel course berdasarkan id
+         * @param  int $id, Request $request
+         * @return view back
+        */
         //validasi request
         $validated = $request->validate([
-            //validasi kolom name dengan aturan required dan unique
-            'name' => 'required|unique:name',
+           'name' => 'required|unique:name', //validasi kolom name dengan aturan required dan unique
         ]);
-        //mencari id yang berkesesuaian dan melakukan update berdasarkan data yang sudah divalidasi
-        Course::find($id)->update($validated);
-        //kembali ke halaman sebelumnya
-        return redirect()->back();
+        Course::find($id)->update($validated);//mencari id yang berkesesuaian dan melakukan update berdasarkan data yang sudah divalidasi
+        return redirect()->back();//kembali ke halaman sebelumnya
     }
     public function destroy($id){
-        /*fungsi menghapus data course berdasarkan id*/
-        //mencari id course dan jika tidak ditemukan maka akan gagal
-        //menghapus id tersebut
+        /**
+         * @description Membuat public function bernama destroy yang akan menghapus data course berdasarkan id
+         * @param  int $id
+         * @return view back
+        */
         Course::findOrFail($id)->delete();
-        //kembali ke halaman sebelumnya
-        return redirect()->back();
+        return redirect()->back();//kembali ke halaman sebelumnya
     }
 }
+
+
 
 

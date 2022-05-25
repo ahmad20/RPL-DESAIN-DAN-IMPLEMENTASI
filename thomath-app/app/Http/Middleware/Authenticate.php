@@ -20,6 +20,8 @@ class Authenticate extends Middleware
                 return url('walimurid/login');
             }else if(Auth::guard('pengajar')->user()){
                 return url('pengajar/login');
+            }else if(Auth::guard('siswa')->user()){
+                return url('siswa/login');
             }
             // return url('walimurid/login');
         }

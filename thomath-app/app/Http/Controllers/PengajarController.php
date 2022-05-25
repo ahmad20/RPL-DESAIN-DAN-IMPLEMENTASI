@@ -2,13 +2,25 @@
 
 namespace App\Http\Controllers;
 use Auth;
+use App\Models\Course;
 use App\Models\Pengajar;
+use App\Models\TestPaper;
 use Illuminate\Http\Request;
+use App\Http\Controllers\CourseController;
 
 class PengajarController extends Controller
 {
     public function dashboard(){
-        return view('pengajar.dashboard');
+        $pengajar = Auth()->guard('pengajar')->user();
+        $course = Course::where('created_by', $pengajar->id_pengajar)->get();
+        $arr = array();
+        $i = 0;
+        foreach($course as $c){
+            $arr[$i] = TestPaper::where('id_course', $c->id_course)->get();
+            $i = $i+1;
+        }
+        // $testpaper = TestPaper::where('id_course', $course->id_course)->get();
+        return view('pengajar.dashboard', ['courses'=>$course, 'testpaper' => $arr, 'pengajar'=>$pengajar]);
     }
     public function index(){
         return view('landing');
@@ -31,11 +43,11 @@ class PengajarController extends Controller
         $password = $request->password;
         if(Auth::guard('pengajar')->attempt(['email' => $email, 'password' => $password])){
 
-             return redirect()->intended('pengajar/dashboard')
-                         ->withSuccess('Signed in');
+             return redirect()->to('/pengajar/dashboard');
+                        //  ->withSuccess('Signed in');
         }
         else {
-            return redirect("pengajar/login")->withSuccess('Login details are not valid');
+            return redirect("/pengajar/login")->withSuccess('Login details are not valid');
         }
     }
     public function registerPengajar(Request $request){

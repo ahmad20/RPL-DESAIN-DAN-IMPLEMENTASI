@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    @include('wali.partials.sidebar')
+    @include('siswa.partials.sidebar')
 
     <section class="home-section">
         <nav>
@@ -28,14 +28,14 @@
             </div>
             <div class="profile-details">
                 <i class="glyphicon glyphicon-user"></i>
-                <div class="admin_name">{{ ucwords(Auth::guard('walimurid')->user()->name) }}</div>
+                <div class="admin_name">{{ ucwords(Auth::guard('siswa')->user()->name) }}</div>
             </div>
         </nav>
         <img class="anaksd" src="/image/anaksd.png" alt="">
         <h3>Data Diri</h3>
-        <p> Email : {{Auth::guard('walimurid')->user()->email }}</p>
-        <p> Nama : {{Auth::guard('walimurid')->user()->name }}</p>
-        <p> Nomor Telepon : {{Auth::guard('walimurid')->user()->phone_number }}</p>
+        <p> Email : {{Auth::guard('siswa')->user()->email }}</p>
+        <p> Nama : {{Auth::guard('siswa')->user()->name }}</p>
+        <p> Nomor Telepon : {{Auth::guard('siswa')->user()->phone_number }}</p>
         <script>
             let sidebar = document.querySelector(".sidebar");
             let sidebarBtn = document.querySelector(".sidebarBtn");

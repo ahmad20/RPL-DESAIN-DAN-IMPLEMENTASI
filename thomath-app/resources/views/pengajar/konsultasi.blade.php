@@ -17,60 +17,55 @@
     @include('pengajar.partials.sidebar')
 
     <section class="home-section">
-        <nav>
+        {{-- <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Lihat Nilai Anak</span>
+                <span class="course">Course Material</span>
             </div>
-            <div class="main-header">
-                <br>
-                <div class="form-row" style="margin-top: 270px; margin-left: -1005px;">
-                    <div class="form-group col-md-6">
-                        <label for="inputEmail4" style="width: 50%;">Nama Siswa : Ridho </label>
-                    </div>
-                    <div>
-                        <label style="margin-left: -487px; margin-top: 25px; font-size: small;">Kelas : 6A</label>
-                        <br>
-                    </div>
-                    <center>
-                        <div class="section-body" style="width:90%;">
-                            <div class="table-responsive">
-                                <table id="myTable">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Email</th>
-                                            <th>Topik</th>
-                                            <th>Tahun</th>
-                                            <th>Tanggal</th>
-                                            <th>Deskripsi</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($data as $k)
-                                            <tr>
-                                                <td>{{ $k->id_konsultasi }}</td>
-                                                <td>{{ $k->email }}</td>
-                                                <td>{{ $k->topik }}</td>
-                                                <td>{{ $k->tahun }}</td>
-                                                <td>{{ $k->tanggal }}</td>
-                                                <td>{{ $k->deskripsi }}</td>
-                                                <td>
-                                                    <form action="{{ url('konsultasi/assign', $k->id_konsultasi) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        <button class="btn btn-danger" type="submit">Tambah</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </center>
-        </nav>
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+                <i class='bx bx-search'></i>
+            </div>
+            <div class="profile-details">
+                <i class="glyphicon glyphicon-user"></i>
+                <span class="admin_name">{{ Auth::guard('pengajar')->user()->name }}</span>
+            </div>
+        </nav> --}}
+        <div class="section-body" style="width:100%;">
+            <div class="table-responsive">
+                <table id="myTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Topik</th>
+                            <th>Tahun</th>
+                            <th>Tanggal</th>
+                            <th>Deskripsi</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $k)
+                            <tr>
+                                <td>{{ $k->id_konsultasi }}</td>
+                                <td>{{ $k->email }}</td>
+                                <td>{{ $k->topik }}</td>
+                                <td>{{ $k->tahun }}</td>
+                                <td>{{ $k->tanggal }}</td>
+                                <td>{{ $k->deskripsi }}</td>
+                                <td>
+                                    <form action="{{ url('konsultasi/assign', $k->id_konsultasi) }}" method="post">
+                                        @csrf
+                                        <button class="btn btn-danger" type="submit">Tambah</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <script>
             let sidebar = document.querySelector(".sidebar");
             let sidebarBtn = document.querySelector(".sidebarBtn");

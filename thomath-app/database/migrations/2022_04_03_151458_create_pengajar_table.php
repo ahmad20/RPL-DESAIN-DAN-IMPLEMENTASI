@@ -20,8 +20,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone_number');
             $table->string('password');
-            $table->unsignedBigInteger('id_konsultasi')->unique()->nullable();
-            $table->foreign('id_konsultasi')->references('id_konsultasi')->on('konsultasi');
+            $table->foreignId('id_konsultasi')->nullable();
+            // $table->unsignedBigInteger('id_konsultasi')->unique()->nullable();
+            // $table->foreign('id_konsultasi')->references('id_konsultasi')->on('konsultasi');
             $table->timestamps();
         });
     }

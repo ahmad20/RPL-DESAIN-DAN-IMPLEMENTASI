@@ -19,7 +19,7 @@
     @include('pengajar.partials.sidebar')
 
     <section class="home-section">
-        <nav>
+        {{-- <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="course">Test</span>
@@ -32,13 +32,40 @@
                 <i class="glyphicon glyphicon-user"></i>
                 <span class="admin_name">Afrizal Syahruluddin Y</span>
             </div>
-        </nav>
-        <div class="col d-flex justify-content-center">
-            <button type="button" class="btn btn-primary btn-sm">Tambah Soal</button>
-            <button type="button" class="btn btn-secondary btn-sm">Edit Soal</button>
-            <button type="button" class="btn btn-primary btn-sm">Hapus Soal</button>
-        </div>
+        </nav> --}}
+        <form method="POST" action="{{ url('pengajar/test/tambah') }}">
+            @csrf
+            <label for="course">Choose a course:</label>
+            <select name="courseName" id="course">
+                <option value="{{ session()->get('course') }}" selected>{{ session()->get('course') }}</option>
+                @foreach ($courses as $c)
+                    <option value='{{ $c->name }}'>{{ $c->name }}</option>
+                @endforeach
+            </select>
+            @error('courseName')
+                {{ $message }}
+            @enderror
+            <div>
+                <label for="date">Batas pengumpulan</label>
+                <input type="datetime-local" class="form-control" id="date" name="dueDate">
+            </div>
+            <div>
+                <label for="question">Pertanyaan</label>
+                <textarea class="form-control" id="question" name="question"></textarea>
+            </div>
+            {{-- <div id="newText"></div> --}}
+            {{-- <input type="hidden" value="1" id="total_q"> --}}
+            <button class="btn btn-primary" type="submit">Tambah Course</button>
+        </form>
+        {{-- <button class="add">Tambah Pertanyaan</button>
+        <button class="delete">Hapus Pertanyaan</button> --}}
         <script>
+            const today = new Date()
+            var tomorrow = new Date(today)
+            tomorrow.setDate(tomorrow.getDate() + 1)
+            tomorrow = tomorrow.toISOString().split('T')[0];
+            document.getElementsByName("dueDate")[0].setAttribute('min', tomorrow+"T00:00");
+
             let sidebar = document.querySelector(".sidebar");
             let sidebarBtn = document.querySelector(".sidebarBtn");
             sidebarBtn.onclick = function() {
@@ -48,6 +75,29 @@
                 } else
                     sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
             }
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $(".add").click(function() {
+                    var total_q = parseInt($('#total_q').val()) + 1;
+                    if (total_q<=5){
+                        $("#newText").append("<b id='label_"+total_q+"'>Pertanyaan " + total_q + "</b>\
+                            <textarea class='form-control' id='question_" + total_q +
+                        "' name='question_" + total_q + "'></textarea>");
+                    $('#total_q').val(total_q);
+                    }
+                    
+                });
+                $(".delete").click(function() {
+                    var total_q = $('#total_q').val();
+                    if (total_q > 1) {
+                        $('#question_' + total_q).remove();
+                        $('#label_' + total_q).remove();
+                        $('#total_q').val(total_q - 1);
+                    }
+                });
+            });
         </script>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

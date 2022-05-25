@@ -5,7 +5,7 @@
             data-bs-toggle="dropdown" aria-expanded="false"
             style="background: transparent; color: black; border: none; font-family: sans-serif; font-size: medium;">Login</button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="{{ url('murid/login') }}">Murid</a></li>
+            <li><a class="dropdown-item" href="{{ url('siswa/login') }}">Murid</a></li>
             <li><a class="dropdown-item" href="{{ url('pengajar/login') }}">Pengajar</a></li>
             <li><a class="dropdown-item" href="{{ url('walimurid/login') }}">Wali Murid</a></li>
         </ul>
@@ -15,7 +15,7 @@
             data-bs-toggle="dropdown" aria-expanded="false"
             style="background-color: rgb(185, 39, 39); background: transparent; color: black; border: none; font-family: sans-serif; font-size: medium;">Registrasi</button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="{{ url('murid/register') }}">Murid</a></li>
+            <li><a class="dropdown-item" href="{{ url('siswa/register') }}">Murid</a></li>
             <li><a class="dropdown-item" href="{{ url('pengajar/register') }}">Pengajar</a></li>
             <li><a class="dropdown-item" href="{{ url('walimurid/register') }}">Wali Murid</a></li>
         </ul>

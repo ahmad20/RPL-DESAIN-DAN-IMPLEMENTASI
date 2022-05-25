@@ -19,7 +19,7 @@
     @include('pengajar.partials.sidebar')
 
     <section class="home-section">
-        <nav>
+        {{-- <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="course">Course Material</span>
@@ -32,71 +32,42 @@
                 <i class="glyphicon glyphicon-user"></i>
                 <span class="admin_name">{{ Auth::guard('pengajar')->user()->name }}</span>
             </div>
-        </nav>
-        <div class="col d-flex justify-content-center">
-            <div class="card" style="width: 30rem;">
-                <div class="card-header">
-                    Bilangan Bulat
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Bilangan Bulat Positif</li>
-                    <li class="list-group-item">Bilangan Bulat Negatif</li>
-                    <li class="list-group-item">Bilangan Prima</li>
-                </ul>
+        </nav> --}}
+        <form method="POST" action="{{ url('pengajar/course-material/tambah') }}">
+            @csrf
+            <label for="course">Choose a course:</label>
+
+            <select name="courseName" id="course">
+                <option value="{{ session()->get('course') }}" selected>{{ session()->get('course') }}</option>
+                @foreach ($courses as $c)
+                    <option value='{{ $c->name }}'>{{ $c->name }}</option>
+                @endforeach
+            </select>
+            @error('courseName')
+                {{ $message }}
+            @enderror
+            <div>
+                <label for="slide">Slide</label>
+                <input type="text" id="slide" name="slide" placeholder="URL Slide">
             </div>
-            <div class="card" style="width: 30rem;">
-                <div class="card-header">
-                    Operasi Matematika
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Perkalian</li>
-                    <li class="list-group-item">Pembagian</li>
-                    <li class="list-group-item">Pertambahan dan Pengurangan</li>
-                </ul>
+            <div>
+                <label for="video">Video Pembelajaran</label>
+                <input type="text" id="video" name="video" placeholder="URL Video">
             </div>
-            <div class="card" style="width: 30rem;">
-                <div class="card-header">
-                    Bilangan Pecahan
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Pecahan Campuran</li>
-                    <li class="list-group-item">Pecahan Desimal</li>
-                    <li class="list-group-item">Operasi Bilangan Pecahan</li>
-                </ul>
+            <div>
+                <label for="kuis">Kuis</label>
+                <input type="text" id="kuis" name="kuis" placeholder="URL Kuis">
             </div>
-        </div>
-        <div class="col d-flex justify-content-center">
-            <div class="card" style="width: 30rem;">
-                <div class="card-header">
-                    Bilangan Bulat
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Bilangan Bulat Positif</li>
-                    <li class="list-group-item">Bilangan Bulat Negatif</li>
-                    <li class="list-group-item">Bilangan Prima</li>
-                </ul>
+            <div>
+                <label for="tugas">Tugas Harian</label>
+                <input type="text" id="tugas" name="tugas" placeholder="URL Tugas">
             </div>
-            <div class="card" style="width: 30rem;">
-                <div class="card-header">
-                    Operasi Matematika
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Perkalian</li>
-                    <li class="list-group-item">Pembagian</li>
-                    <li class="list-group-item">Pertambahan dan Pengurangan</li>
-                </ul>
+            <div>
+                <label for="referensi">Link Referensi</label>
+                <input type="text" id="referensi" name="referensi" placeholder="URL Referensi">
             </div>
-            <div class="card" style="width: 30rem;">
-                <div class="card-header">
-                    Bilangan Pecahan
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Pecahan Campuran</li>
-                    <li class="list-group-item">Pecahan Desimal</li>
-                    <li class="list-group-item">Operasi Bilangan Pecahan</li>
-                </ul>
-            </div>
-        </div>
+            <button class="btn btn-primary" type="submit">Tambah Course</button>
+        </form>
         <script>
             let sidebar = document.querySelector(".sidebar");
             let sidebarBtn = document.querySelector(".sidebarBtn");

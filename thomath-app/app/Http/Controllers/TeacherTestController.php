@@ -2,20 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\TestPaper;
 use Illuminate\Http\Request;
 
 class TeacherTestController extends Controller
 {
     public function index(){
-        return view('pengajar.test');
+        $pengajar = Auth()->guard('pengajar')->user();
+        $courses = Course::where('created_by', $pengajar->id_pengajar)->orderByDesc('created_at')->get();
+        return view('pengajar.test', ['courses'=> $courses]);
     }
     public function store(Request $request){
+        $course = Course::where('name', $request->courseName)->first();
         $validated = $request->validate([
-            'name' => 'required|unique:name',
-            'due_date' => 'required',
+            'courseName' => 'required',
+            'dueDate' => 'required|after_or_equal:today',
+            'question' => 'required',
         ]);
-        $testpaper = TestPaper::create(request(['name', 'due_date', 'id_course']));
-        return redirect()->back();
+        $testpaper = TestPaper::create([
+            'due_date' => $request->dueDate,
+            'question' => $request->question,
+            'id_course' => $course->id_course,
+        ]);
+        return redirect()->to('/pengajar/dashboard');
     }
     public function edit($id){
         $testpaper = TestPaper::findOrFail($id);

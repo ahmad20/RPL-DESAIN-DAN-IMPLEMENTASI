@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Course;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TestPaper extends Model
 {
@@ -11,8 +12,11 @@ class TestPaper extends Model
     protected $table = 'test_paper';
     protected $primaryKey = 'id_test_paper';
     protected $fillable =[
-        'name',
         'due_date',
+        'question',
         'id_course'
     ];
+    public function course(){
+        return $this->belongsTo(Course::class, 'id_course');
+    }
 }

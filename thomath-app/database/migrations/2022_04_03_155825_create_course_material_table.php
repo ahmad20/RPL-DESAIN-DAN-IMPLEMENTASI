@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('course_material', function (Blueprint $table) {
             $table->id('id_course_material');
+            $table->unsignedBigInteger('id_course');
+            $table->text('slide')->nullable();
+            $table->text('video')->nullable();
+            $table->text('kuis')->nullable();
+            $table->text('tugas')->nullable();
+            $table->text('referensi')->nullable();
+            $table->foreign('id_course')->references('id_course')->on('course');
             $table->timestamps();
         });
     }
