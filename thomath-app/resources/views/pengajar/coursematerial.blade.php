@@ -19,25 +19,15 @@
     @include('pengajar.partials.sidebar')
 
     <section class="home-section">
-        {{-- <nav>
+        <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="course">Course Material</span>
             </div>
-            <div class="search-box">
-                <input type="text" placeholder="Search...">
-                <i class='bx bx-search'></i>
-            </div>
-            <div class="profile-details">
-                <i class="glyphicon glyphicon-user"></i>
-                <span class="admin_name">{{ Auth::guard('pengajar')->user()->name }}</span>
-            </div>
-        </nav> --}}
         <form method="POST" action="{{ url('pengajar/course-material/tambah') }}">
             @csrf
-            <label for="course">Choose a course:</label>
-
-            <select name="courseName" id="course">
+            <label for="course" style="margin-top: 500px; margin-left: -990px; font-size: 130%">Course:</label>
+            <select name="courseName" id="course" style="height:35px; width:350px; margin-left: 50px;">
                 <option value="{{ session()->get('course') }}" selected>{{ session()->get('course') }}</option>
                 @foreach ($courses as $c)
                     <option value='{{ $c->name }}'>{{ $c->name }}</option>
@@ -47,27 +37,28 @@
                 {{ $message }}
             @enderror
             <div>
-                <label for="slide">Slide</label>
-                <input type="text" id="slide" name="slide" placeholder="URL Slide">
+                <label for="slide" style="margin-top: 20px; margin-left: -990px; font-size: 130%">Slide:</label>
+                <input type="text" id="slide" name="slide" placeholder="URL Slide" style="margin-top: 20px; margin-left: 50px; height:35px; width: 700px"> 
             </div>
             <div>
-                <label for="video">Video Pembelajaran</label>
-                <input type="text" id="video" name="video" placeholder="URL Video">
+                <label for="video" style="margin-top: 20px; margin-left: -990px; font-size: 130%">Video:</label>
+                <input type="text" id="video" name="video" placeholder="URL Video" style="margin-top: 20px; margin-left: 50px; height:35px; width: 700px">
             </div>
             <div>
-                <label for="kuis">Kuis</label>
-                <input type="text" id="kuis" name="kuis" placeholder="URL Kuis">
+                <label for="kuis" style="margin-top: 20px; margin-left: -990px; font-size: 130%">Kuis:</label>
+                <input type="text" id="kuis" name="kuis" placeholder="URL Kuis" style="margin-top: 20px; margin-left: 50px; height:35px; width: 700px">
             </div>
             <div>
-                <label for="tugas">Tugas Harian</label>
-                <input type="text" id="tugas" name="tugas" placeholder="URL Tugas">
+                <label for="tugas" style="margin-top: 20px; margin-left: -990px; font-size: 130%">Tugas:</label>
+                <input type="text" id="tugas" name="tugas" placeholder="URL Tugas" style="margin-top: 20px; margin-left: 50px; height:35px; width: 700px">
             </div>
             <div>
-                <label for="referensi">Link Referensi</label>
-                <input type="text" id="referensi" name="referensi" placeholder="URL Referensi">
+                <label for="referensi" style="margin-top: 20px; margin-left: -990px; font-size: 130%">Ref:</label>
+                <input type="text" id="referensi" name="referensi" placeholder="URL Referensi" style="margin-top: 20px; margin-left: 50px; height:35px; width: 700px">
             </div>
-            <button class="btn btn-primary" type="submit">Tambah Course</button>
+            <button class="btn btn-primary" type="submit" style="margin-top: 30px; margin-left: -990px; background: rgb(185, 39, 39)">Tambah Material</button>
         </form>
+    </nav>
         <script>
             let sidebar = document.querySelector(".sidebar");
             let sidebarBtn = document.querySelector(".sidebarBtn");

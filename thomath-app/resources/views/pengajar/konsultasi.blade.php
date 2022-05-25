@@ -17,21 +17,12 @@
     @include('pengajar.partials.sidebar')
 
     <section class="home-section">
-        {{-- <nav>
+        <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="course">Course Material</span>
+                <span class="course">DaftarKonsultasi</span>
             </div>
-            <div class="search-box">
-                <input type="text" placeholder="Search...">
-                <i class='bx bx-search'></i>
-            </div>
-            <div class="profile-details">
-                <i class="glyphicon glyphicon-user"></i>
-                <span class="admin_name">{{ Auth::guard('pengajar')->user()->name }}</span>
-            </div>
-        </nav> --}}
-        <div class="section-body" style="width:100%;">
+        <div class="section-body" style="width:100%; margin-top: 120px; margin-left: -180px">
             <div class="table-responsive">
                 <table id="myTable">
                     <thead>
@@ -57,7 +48,7 @@
                                 <td>
                                     <form action="{{ url('konsultasi/assign', $k->id_konsultasi) }}" method="post">
                                         @csrf
-                                        <button class="btn btn-danger" type="submit">Tambah</button>
+                                        <button class="btn btn-danger" type="submit">Accept</button>
                                     </form>
                                 </td>
                             </tr>
@@ -66,6 +57,7 @@
                 </table>
             </div>
         </div>
+    </nav>
         <script>
             let sidebar = document.querySelector(".sidebar");
             let sidebarBtn = document.querySelector(".sidebarBtn");

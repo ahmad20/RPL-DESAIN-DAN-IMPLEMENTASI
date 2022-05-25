@@ -34,13 +34,14 @@
                 <span class="admin_name">{{ Auth::guard('pengajar')->user()->name }}</span>
             </div>
         </nav>
-        <div class="col d-flex justify-content-center">
+        
+        <div class="col d-flex">
             @if ($courses->count() == 0)
                 {{ 'belum ada' }}
             @else
                 @foreach ($courses as $c)
                     <div class="card">
-                        <img src="https://placeholder.pics/svg/300x200" class="card-img-top" alt="...">
+                        {{-- <img src="https://placeholder.pics/svg/300x200" class="card-img-top" alt="..."> --}}
                         <div class="card-body">
                             <h5 class="card-title">{{ $c->name }}</h5>
                             <p class="card-text">{{ $c->description }}.</p>
@@ -53,7 +54,7 @@
                 @endforeach
             @endif
         </div>
-        <div class="col d-flex justify-content-center">
+        <div class="col d-flex">
             @foreach ($testpaper as $tp)
                 @foreach ($tp as $t)
                     <div class="card">
@@ -69,7 +70,7 @@
         @if (is_null($pengajar->konsultasi))
             {{ 'belum ada' }}
         @else
-            <div class="col d-flex justify-content-center">
+            <div class="col d-flex">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Konsultasi</h5>

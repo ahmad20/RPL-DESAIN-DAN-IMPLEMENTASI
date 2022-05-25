@@ -19,24 +19,15 @@
     @include('pengajar.partials.sidebar')
 
     <section class="home-section">
-        {{-- <nav>
+        <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="course">Test</span>
             </div>
-            <div class="search-box">
-                <input type="text" placeholder="Search...">
-                <i class='bx bx-search'></i>
-            </div>
-            <div class="profile-details">
-                <i class="glyphicon glyphicon-user"></i>
-                <span class="admin_name">Afrizal Syahruluddin Y</span>
-            </div>
-        </nav> --}}
         <form method="POST" action="{{ url('pengajar/test/tambah') }}">
             @csrf
-            <label for="course">Choose a course:</label>
-            <select name="courseName" id="course">
+            <label for="course" style="margin-top: 350px; margin-left: -990px; font-size: 130%">Course:</label>
+            <select name="courseName" id="course" style="height:35px; width:600px; margin-left: 88px;">
                 <option value="{{ session()->get('course') }}" selected>{{ session()->get('course') }}</option>
                 @foreach ($courses as $c)
                     <option value='{{ $c->name }}'>{{ $c->name }}</option>
@@ -46,19 +37,16 @@
                 {{ $message }}
             @enderror
             <div>
-                <label for="date">Batas pengumpulan</label>
-                <input type="datetime-local" class="form-control" id="date" name="dueDate">
+                <label for="date" style="margin-top: 20px; margin-left: -990px; font-size: 130%">Deadline:</label>
+                <input type="datetime-local" class="form-control" id="date" name="dueDate" style="margin-left: -900px; margin-top: -35px; width: 600px">
             </div>
             <div>
-                <label for="question">Pertanyaan</label>
-                <textarea class="form-control" id="question" name="question"></textarea>
+                <label for="question" style="margin-top: 20px; margin-left: -990px; font-size: 130%">Pertanyaan:</label>
+                <textarea class="form-control" id="question" name="question" style="margin-left: -900px; margin-top: -35px; width: 600px"></textarea>
             </div>
-            {{-- <div id="newText"></div> --}}
-            {{-- <input type="hidden" value="1" id="total_q"> --}}
-            <button class="btn btn-primary" type="submit">Tambah Course</button>
+            <button class="btn btn-primary" type="submit" style="margin-top: 50px; margin-left: -990px; background: rgb(185, 39, 39)">Tambah Test</button>
         </form>
-        {{-- <button class="add">Tambah Pertanyaan</button>
-        <button class="delete">Hapus Pertanyaan</button> --}}
+    </nav>
         <script>
             const today = new Date()
             var tomorrow = new Date(today)

@@ -24,37 +24,29 @@
     </div>
     @endif
     <section class="home-section">
-        {{-- <nav>
+        <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="course">Course</span>
             </div>
-            <div class="search-box">
-                <input type="text" placeholder="Search...">
-                <i class='bx bx-search'></i>
-            </div>
-            <div class="profile-details">
-                <i class="glyphicon glyphicon-user"></i>
-                <span class="admin_name">{{ Auth::guard('pengajar')->user()->name }}</span>
-            </div>
-        </nav> --}}
         <form method="POST"
             action="{{ url('pengajar/course/tambah', Auth::guard('pengajar')->user()->id_pengajar) }}">
             @csrf
-            <div>
-                <label for="courseName">Name</label>
+            <div style="margin-top: 310px; margin-left: -990px; margin-right: 200px">
+                <label for="courseName" style="font-size: medium">Name</label>
                 <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="courseName"
                     placeholder="Course 1" autofocus>
                 @error('name')
                         {{ $message }}
                 @enderror
             </div>
-            <div>
-                <label for="courseDesc">Description</label>
+            <div style="margin-top: 20px; margin-left: -990px; margin-right: 200px;">
+                <label for="courseDesc" style="font-size: medium">Description</label>
                 <textarea class="form-control" id="courseDesc" name="description"></textarea>
             </div>
-            <button class="btn btn-primary" type="submit">Tambah Course</button>
+            <button class="btn btn-primary" type="submit" style="margin-top: 30px; margin-left: -990px; background: rgb(185, 39, 39)">Tambah Course</button>
         </form>
+    </nav>
     </section>
     <script>
         let sidebar = document.querySelector(".sidebar");
