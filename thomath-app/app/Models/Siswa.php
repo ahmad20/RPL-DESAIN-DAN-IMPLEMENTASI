@@ -23,7 +23,6 @@ class Siswa extends Authenticatable
 
     ];
     public function course(){
-        // return $this->belongsToMany(Course::class, 'course_siswa');
         return $this->belongsToMany(Course::class);
     }
 }
