@@ -23,7 +23,7 @@ use App\Http\Controllers\CourseMaterialController;
 */
 Route::get('/', function(){
     return view('landing');
-});
+})->middleware(['guest:walimurid', 'guest:siswa', 'guest:pengajar']);
 Route::prefix('walimurid')->name('walimurid.')->group(function(){
     Route::middleware(['guest:walimurid'])->group(function(){   
         Route::get('/register', [WaliMuridController::class, 'registerWaliView']);
@@ -52,7 +52,11 @@ Route::prefix('pengajar')->name('pengajar.')->group(function(){
         Route::get('/test', [TeacherTestController::class, 'index']);
         Route::get('/course', [CourseController::class, 'index']);
         Route::get('/logout', [PengajarController::class, 'logout']);
-        Route::get('/konsultasi', [KonsultasiController::class, 'show']);         
+        Route::get('/konsultasi', [KonsultasiController::class, 'show']);   
+        Route::get('/singlecourse/{id_course}', [PengajarController::class, 'singleCourseView']);
+        Route::get('/course/delete/{id_course}', [CourseController::class, 'destroy']);
+        Route::get('/course/edit/{id_course}', [CourseController::class, 'edit']);
+
         //Route::get('konsultasi', [KonsultasiController::class, 'view']);
     });
 });
@@ -65,6 +69,9 @@ Route::prefix('siswa')->name('siswa.')->group(function(){
     Route::middleware(['auth:siswa'])->group(function(){
         Route::get('/dashboard', [SiswaController::class, 'dashboard']);
         Route::get('/logout', [SiswaController::class, 'logout']);
+        Route::get('/singlecourse/{id_course}', [SiswaController::class, 'singleCourseView']);
+        Route::get('/course', [SiswaController::class, 'courseView']);
+        Route::get('/course/assign/{id_course}', [SiswaController::class, 'assignCourse']);
         
     
         
@@ -78,7 +85,8 @@ Route::prefix('siswa')->name('siswa.')->group(function(){
 //     Route::get('/login/wali', [LandingController::class, 'loginWaliView']);
 // });
 
-
+Route::get('/ai', [PengajarController::class, 'searchVideoView']);
+Route::post('/search', [PengajarController::class, 'searchVideo']);
 Route::post('walimurid/register', [WaliMuridController::class, 'registerWali']);
 Route::post('walimurid/login', [WaliMuridController::class, 'loginWali']);
 Route::post('walimurid/konsultasi/{id_wali}', [KonsultasiController::class, 'store']);
@@ -86,7 +94,7 @@ Route::post('walimurid/konsultasi/{id_wali}', [KonsultasiController::class, 'sto
 Route::post('pengajar/course/tambah/{id_pengajar}', [CourseController::class, 'store']);
 Route::post('pengajar/course-material/tambah', [CourseMaterialController::class, 'store']);
 Route::post('pengajar/test/tambah', [TeacherTestController::class, 'store']);
-
+Route::post('pengajar/course/update/{id_course}', [CourseController::class, 'update']);
 
 Route::post('pengajar/register', [PengajarController::class, 'registerPengajar']);
 Route::post('pengajar/login', [PengajarController::class, 'loginPengajar']);
@@ -94,4 +102,5 @@ Route::post('/konsultasi/assign/{id_konsultasi}', [KonsultasiController::class, 
 
 Route::post('siswa/register', [SiswaController::class, 'registerSiswa']);
 Route::post('siswa/login', [SiswaController::class, 'loginSiswa']);
+
 

@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Course;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Siswa extends Authenticatable
 {
@@ -21,4 +22,8 @@ class Siswa extends Authenticatable
         'id_konsultasi'
 
     ];
+    public function course(){
+        // return $this->belongsToMany(Course::class, 'course_siswa');
+        return $this->belongsToMany(Course::class);
+    }
 }

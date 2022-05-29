@@ -3,15 +3,46 @@
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SiswaController extends Controller
 {
     public function dashboard(){
-        return view('siswa.dashboard');
+        $siswa = Auth()->guard('siswa')->user();
+        $courses = $siswa->course;
+        return view('siswa.dashboard',['siswa'=>$siswa,'courses'=>$courses]);
     }
+    public function courseView(){
+        $siswa = Auth()->guard('siswa')->user();
+        $courses = Course::all();
+        // return dd($courses);
+        return view('siswa.course', ['siswa'=>$siswa,'courses'=>$courses]);
+    }
+    public function assignCourse(Request $request, $id_course){
+        $siswa = Auth()->guard('siswa')->user();
+        $course = Course::findOrFail($id_course);
+        // if($siswa->id_siswa==)
 
+        foreach($siswa->course->all() as $ss){
+            //siswa sudah terdaftar di course tersebut
+            if($course->id_course==$ss->id_course){
+                //bisa redirect ke course langsung
+                return redirect()->to('siswa/dashboard')->with('success', 'Kamu Sudah Masuk');
+            }
+        }
+        $siswa->course()->attach($course);
+        return redirect()->to('siswa/dashboard')->with('success', 'berhasil menambahkan');
+    }
+    public function singleCourseView($id_course){
+        $course = Course::findOrFail($id_course);
+        $cm = $course->coursematerial;
+        if ($cm==null){
+            $cm="Kosong";
+        }
+        return view('siswa.singlecourse', ['course'=>$course, 'cm'=>$cm]);
+    }
     public function loginSiswaView(){
         return view('siswa.login');
     }

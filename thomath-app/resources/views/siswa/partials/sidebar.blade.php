@@ -11,6 +11,12 @@
             </a>
         </li>
         <li>
+            <a href="{{ url('siswa/course') }}" class="{{ (request()->is('*/lihat-nilai')) ? 'active' : '' }}">
+                <i class='bx bx-book-alt'></i>
+                <span class="links_name">Course</span>
+            </a>
+        </li>
+        <li>
             <a href="{{ url('siswa/lihat-nilai') }}" class="{{ (request()->is('*/lihat-nilai')) ? 'active' : '' }}">
                 <i class='bx bx-book-alt'></i>
                 <span class="links_name">Lihat Nilai</span>

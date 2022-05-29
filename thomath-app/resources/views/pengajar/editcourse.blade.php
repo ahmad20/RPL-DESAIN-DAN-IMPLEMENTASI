@@ -19,9 +19,9 @@
     @include('pengajar.partials.sidebar')
 
     @if (session()->has('success'))
-    <div class="alert alert-success">
-        {{ session()->get('success') }}
-    </div>
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
     @endif
     <section class="home-section">
         <nav>
@@ -29,27 +29,29 @@
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="course">Course</span>
             </div>
-        <form method="POST"
-            action="{{ url('pengajar/course/tambah', Auth::guard('pengajar')->user()->id_pengajar) }}">
-            @csrf
-            <div style="margin-top: 310px; margin-left: -990px; margin-right: 200px">
-                <label for="courseName" style="font-size: medium">Name</label>
-                <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="courseName"
-                    placeholder="Course 1" autofocus>
-                @error('name')
+            <form method="POST"
+                action="{{ url('pengajar/course/update', $course->id_course)  }}">
+                @csrf
+                <div style="margin-top: 310px; margin-left: -990px; margin-right: 200px">
+                    <label for="courseName" style="font-size: medium">Name</label>
+                    <input name="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                        id="courseName" placeholder="Course 1" value="{{ $course->name }}" autofocus>
+                    @error('name')
                         {{ $message }}
-                @enderror
-            </div>
-            <div style="margin-top: 20px; margin-left: -990px; margin-right: 200px;">
-                <label for="courseDesc" style="font-size: medium">Description</label>
-                <textarea class="form-control @error('description') is-invalid @enderror" id="courseDesc" name="description"></textarea>
-                @error('description')
+                    @enderror
+                </div>
+                <div style="margin-top: 20px; margin-left: -990px; margin-right: 200px;">
+                    <label for="courseDesc" style="font-size: medium">Description</label>
+                    <textarea class="form-control @error('description') is-invalid @enderror" id="courseDesc"
+                        name="description">{{ $course->description }}</textarea>
+                    @error('description')
                         {{ $message }}
-                @enderror
-            </div>
-            <button class="btn btn-primary" type="submit" style="margin-top: 30px; margin-left: -990px; background: rgb(185, 39, 39)">Tambah Course</button>
-        </form>
-    </nav>
+                    @enderror
+                </div>
+                <button class="btn btn-primary" type="submit"
+                    style="margin-top: 30px; margin-left: -990px; background: rgb(185, 39, 39)">Edit Course</button>
+            </form>
+        </nav>
     </section>
     <script>
         let sidebar = document.querySelector(".sidebar");

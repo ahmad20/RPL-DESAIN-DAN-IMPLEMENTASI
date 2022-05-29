@@ -23,6 +23,7 @@ class CourseController extends Controller
         //validasi request
         $validated = $request->validate([
             'name' => 'required|unique:course', //validasi kolom name dengan aturan required dan unique
+            'description' => 'required'
         ]);
         
         //membuat course dengan parameter name
@@ -43,18 +44,27 @@ class CourseController extends Controller
         $course = Course::findOrFail($id);//mencari id course dan jika tidak ditemukan maka akan gagal
         return view('pengajar.editcourse', compact('course'));//jika id ditemukan maka akan menuju halaman formulir edit course
     }
-    public function update(Request $request, $id){
+    public function update(Request $request, $id_course){
         /**
          * @description Membuat public function bernama update yang akan menerima dan memperbaharui tabel course berdasarkan id
          * @param  int $id, Request $request
          * @return view back
         */
-        //validasi request
-        $validated = $request->validate([
-           'name' => 'required|unique:name', //validasi kolom name dengan aturan required dan unique
-        ]);
-        Course::find($id)->update($validated);//mencari id yang berkesesuaian dan melakukan update berdasarkan data yang sudah divalidasi
-        return redirect()->back();//kembali ke halaman sebelumnya
+        $course = Course::find($id_course);
+        //jika nama baru = nama lama
+        if($course->name==$request->name){
+            $validated = $request->validate([
+                'name' => 'required', //validasi kolom name dengan aturan required dan unique
+                'description' => 'required'
+            ]);
+        }else{
+            $validated = $request->validate([
+                'name' => 'required|unique:course', //validasi kolom name dengan aturan required dan unique
+                'description' => 'required'
+            ]);
+        }
+        $course->update($validated);
+        return redirect()->to('pengajar/dashboard');//kembali ke halaman sebelumnya
     }
     public function destroy($id){
         /**

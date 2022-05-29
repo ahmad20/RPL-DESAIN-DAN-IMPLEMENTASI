@@ -18,19 +18,35 @@ class CourseMaterialController extends Controller
             'courseName' => 'required',
         ]);
         $course = Course::where('name', $request->courseName)->first();
-        $cm = CourseMaterial::where('id_course', $course->id_course)->first();
-        if($cm!=null){
-            $this->update($request, $cm->id_course);
-        }else{
+        $cm = $course->coursematerial;
+        if($cm==null){
             $material = CourseMaterial::create([
-                'id_course'=> $course->id_course,
                 'slide'=> $request->slide,
                 'video'=> $request->video,
                 'kuis'=> $request->kuis,
                 'tugas'=> $request->tugas,
                 'referensi'=> $request->referensi]);
+            $course->update(['course_material'=>$material->id_course_material]);
+        }else{
+            $this->update($request, $cm->id_course_material);
         }
         
+        
+        
+        
+        // $cm = CourseMaterial::where('id_course', $course->id_course)->first();
+        // if($c!=null){
+        //     $this->update($request, $cm->id_course);
+        // }else{
+        //     $material = CourseMaterial::create([
+        //         // 'id_course'=> $course->id_course,
+        //         'slide'=> $request->slide,
+        //         'video'=> $request->video,
+        //         'kuis'=> $request->kuis,
+        //         'tugas'=> $request->tugas,
+        //         'referensi'=> $request->referensi]);
+        // }
+        // $course->update(['course_material'=>$cm->id_course]);
         return redirect()->to('/pengajar/dashboard');
     }
     public function edit($id){

@@ -17,9 +17,10 @@ return new class extends Migration
             $table->id('id_course');
             $table->string('name');
             $table->text('description');
-            $table->unsignedBigInteger('material')->default(0);
+            // $table->unsignedBigInteger('material')->default(0);
             // $table->unsignedBigInteger('created_by');
             $table->foreignId('created_by');
+            $table->foreignId('course_material')->nullable();
             //$table->foreign('material')->references('id_course_material')->on('course_material')->unique();
             // $table->foreign('created_by')->references('id_pengajar')->on('pengajar');
             $table->timestamps();

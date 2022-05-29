@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    @include('pengajar.partials.sidebar')
+    @include('siswa.partials.sidebar')
 
     <section class="home-section">
         <nav>
@@ -27,7 +27,7 @@
             </div>
             <div class="profile-details">
                 <i class="glyphicon glyphicon-user"></i>
-                <span class="admin_name">{{ Auth::guard('pengajar')->user()->name }}</span>
+                <span class="admin_name">{{ $siswa->name }}</span>
             </div>
         </nav>
 
@@ -43,13 +43,9 @@
                                 <p> More Details</p>
                             </a>
                             <div class="input-group input-group-lg mt-5">
-                                <a href="/pengajar/course/edit/{{$c->id_course }}" style="text-decoration: none">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                    Edit
-                                </a>
-                                <a href="course/delete/{{$c->id_course }}" style="text-decoration: none">
-                                    <span class="glyphicon glyphicon-trash ml-3" aria-hidden="true"></span>
-                                    Hapus
+                                <a href="/siswa/course/assign/{{ $c->id_course }}" style="text-decoration: none">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    Masuk Kelas
                                 </a>
                             </div>
                         </div>
@@ -57,44 +53,7 @@
                 @endforeach
             @endif
         </div>
-        <div class="col d-flex">
-            @foreach ($testpaper as $tp)
-                @foreach ($tp as $t)
-                    <div class="card">
-                        <div class="card-body">
-                            <a href="/asd">
-                                <h5 class="card-title">{{ $t->course->name }}</h5>
-                                <p class="card-text">{{ $t->due_date }}.</p>
-                            </a>
-                            <div class="input-group input-group-lg mt-5">
-                                <a href="/pengajar/course" style="text-decoration: none">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                    Edit
-                                </a>
-                                <a href="/pengajar/course" style="text-decoration: none">
-                                    <span class="glyphicon glyphicon-trash ml-3" aria-hidden="true"></span>
-                                    Hapus
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endforeach
 
-        </div>
-        @if (is_null($pengajar->konsultasi))
-            {{ 'belum ada' }}
-        @else
-            <div class="col d-flex">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Konsultasi</h5>
-                        <p>Topik {{ $pengajar->konsultasi->topik }}</p>
-                        <p class="card-text">{{ $pengajar->konsultasi->tanggal }}.</p>
-                    </div>
-                </div>
-            </div>
-        @endif
 
     </section>
 

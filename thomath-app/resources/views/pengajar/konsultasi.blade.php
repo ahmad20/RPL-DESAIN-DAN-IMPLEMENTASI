@@ -20,7 +20,7 @@
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="course">DaftarKonsultasi</span>
+                <span class="course">Daftar Konsultasi</span>
             </div>
         <div class="section-body" style="width:100%; margin-top: 120px; margin-left: -180px">
             <div class="table-responsive">
@@ -35,9 +35,10 @@
                             <th>Deskripsi</th>
                             <th>Action</th>
                         </tr>
+                        
                     </thead>
                     <tbody>
-                        @foreach ($data as $k)
+                        {{-- @foreach ($data as $k)
                             <tr>
                                 <td>{{ $k->id_konsultasi }}</td>
                                 <td>{{ $k->email }}</td>
@@ -52,7 +53,43 @@
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
+                        @endforeach --}}
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Topik</th>
+                            <th>Tahun</th>
+                            <th>Tanggal</th>
+                            <th>Deskripsi</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Topik</th>
+                            <th>Tahun</th>
+                            <th>Tanggal</th>
+                            <th>Deskripsi</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Topik</th>
+                            <th>Tahun</th>
+                            <th>Tanggal</th>
+                            <th>Deskripsi</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Topik</th>
+                            <th>Tahun</th>
+                            <th>Tanggal</th>
+                            <th>Deskripsi</th>
+                            <th>Action</th>
+                        </tr>
                     </tbody>
                 </table>
             </div>

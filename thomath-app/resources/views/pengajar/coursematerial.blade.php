@@ -30,7 +30,7 @@
             <select name="courseName" id="course" style="height:35px; width:350px; margin-left: 50px;">
                 <option value="{{ session()->get('course') }}" selected>{{ session()->get('course') }}</option>
                 @foreach ($courses as $c)
-                    <option value='{{ $c->name }}'>{{ $c->name }}</option>
+                    <option value=''>{{ $c->name }}</option>
                 @endforeach
             </select>
             @error('courseName')
@@ -56,7 +56,7 @@
                 <label for="referensi" style="margin-top: 20px; margin-left: -990px; font-size: 130%">Ref:</label>
                 <input type="text" id="referensi" name="referensi" placeholder="URL Referensi" style="margin-top: 20px; margin-left: 50px; height:35px; width: 700px">
             </div>
-            <button class="btn btn-primary" type="submit" style="margin-top: 30px; margin-left: -990px; background: rgb(185, 39, 39)">Tambah Material</button>
+            <button class="btn btn-primary" type="submit" style="margin-top: 30px; margin-left: -990px; background: rgb(185, 39, 39)">Tambah/Update Material</button>
         </form>
     </nav>
         <script>
