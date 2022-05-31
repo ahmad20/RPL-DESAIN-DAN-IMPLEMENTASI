@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 use Auth;
+use Config;
 use App\Models\Course;
 use App\Models\Pengajar;
 use App\Models\TestPaper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CourseController;
-
 class PengajarController extends Controller
 {
     public function dashboard(){
@@ -47,7 +47,7 @@ class PengajarController extends Controller
             CURLOPT_HTTPHEADER => [
                 "X-Proxy-Location: ID",
                 "X-RapidAPI-Host: google-search3.p.rapidapi.com",
-                "X-RapidAPI-Key: 4c4c9aa20fmsh40a041d870ab982p16525djsnae558fbca168",
+                "X-RapidAPI-Key: Config::get('config.RAPID_API')",
                 "X-User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13"
             ],
         ]);
@@ -67,9 +67,9 @@ class PengajarController extends Controller
             // echo "</pre>";
         }*/
         //google api
-        // $apikey = 'AIzaSyC_i8mvnDIxnV1aMH72_Kzq7m7X_m0lHm4';
+        // $apikey = Config::get('config.GOOGLE_API_1');
         //alternate1
-        $apikey = 'AIzaSyCyTioJlnSQb-CdHG8Pq_wHKdd9BLjQ9QQ';
+        $apikey = Config::get('config.GOOGLE_API_2');
         $keyword = urlencode($request->keyword);
         $blockWords = ['sexy', 'sex', 'xxx', 'hiburan', 'lucu', 'bokep', 'mobile+legend', 'mobile+legends', '+18', 'funny'];
         if(0 < count(array_intersect(array_map('strtolower', explode(' ', $keyword)), $blockWords))){
