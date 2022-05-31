@@ -20,5 +20,4 @@
             <li><a class="dropdown-item" href="{{ url('walimurid/register') }}">Wali Murid</a></li>
         </ul>
     </div>
-    {{-- <button class="btn btn-fill text-white" style="font-family: sans-serif; font-size: medium; background-color: rgb(185, 39, 39);"><a href="{{ url('register-wali') }}" style="text-decoration: none;color:white">Register</a></button> --}}
 </div>

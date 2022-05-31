@@ -22,6 +22,12 @@
                 <span class="links_name">Lihat Nilai</span>
             </a>
         </li>
+        <li>
+            <a href="{{ url('siswa/lihat-nilai') }}" class="{{ (request()->is('*/lihat-nilai')) ? 'active' : '' }}">
+                <i class='bx bx-book-alt'></i>
+                <span class="links_name">Search Video</span>
+            </a>
+        </li>
         <li class="log_out">
             <a href="{{ url('siswa/logout') }}">
                 <i class='bx bx-log-out'></i>
