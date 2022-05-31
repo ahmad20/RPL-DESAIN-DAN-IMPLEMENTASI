@@ -33,10 +33,15 @@
             </div>
         </nav>
         <img class="anaksd" src="/image/anaksd.png" alt="">
-        <h3>Data Diri</h3>
-        <p> Email : {{ $siswa->email }}</p>
-        <p> Nama : {{ $siswa->name }}</p>
-        <p> Nomor Telepon : {{ $siswa->phone_number }}</p>
+        <div class="card1">
+            <div class="card-body1" style="background: white; margin-left: 20px; width: 990px">
+                <h2 style="margin-top: -70px; font-weight: bold">Halo, Selamat Datang di Thomath</h2>
+                <h3 style="margin-top: 30px">Data Diri</h3>
+                <p> Email : {{ $siswa->email }}</p>
+                <p> Nama : {{ $siswa->name }}</p>
+                <p> Nomor Telepon : {{ $siswa->phone_number }}</p>
+            </div>
+        </div>
         <div class="col d-flex">
             @foreach ($courses as $course)
                 <div class="card">
