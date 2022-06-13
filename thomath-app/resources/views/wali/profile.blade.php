@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    @include('pengajar.partials.sidebar')
+    @include('wali.partials.sidebar')
 
     @if (session()->has('success'))
         <div class="alert alert-success">
@@ -27,29 +27,53 @@
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="course">Course</span>
+                <span class="course">Profile</span>
             </div>
             <form method="POST"
-                action="{{ url('pengajar/course/update', $course->id_course)  }}">
+                action="{{ url('walimurid/profile', Auth::guard('walimurid')->user()->id_wali_murid) }}">
                 @csrf
-                <div style="margin-top: 310px; margin-left: -990px; margin-right: 200px">
+                <div style="margin-top: 510px; margin-left: -990px; margin-right: 200px">
                     <label for="courseName" style="font-size: medium">Name</label>
                     <input name="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                        id="courseName" placeholder="Course 1" value="{{ $course->name }}" autofocus>
+                        id="courseName" value="{{ Auth::guard('walimurid')->user()->name }}"  autofocus>
                     @error('name')
                         {{ $message }}
                     @enderror
                 </div>
-                <div style="margin-top: 20px; margin-left: -990px; margin-right: 200px;">
-                    <label for="courseDesc" style="font-size: medium">Description</label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" id="courseDesc"
-                        name="description">{{ $course->description }}</textarea>
-                    @error('description')
+                <div style="margin-left: -990px; margin-right: 200px;">
+                    <label for="email" style="font-size: medium">Email</label>
+                    <input name="email" type="text" class="form-control @error('email') is-invalid @enderror"
+                        id="email" value="{{ Auth::guard('walimurid')->user()->email }}"  >
+                    @error('email')
                         {{ $message }}
                     @enderror
                 </div>
-                <button class="btn btn-primary" type="submit" name="submit"
-                    style="margin-top: 30px; margin-left: -990px; background: rgb(185, 39, 39)">Edit Course</button>
+                <div style="margin-left: -990px; margin-right: 200px;">
+                    <label for="oldPassword" style="font-size: medium">Password Lama</label>
+                    <input name="oldPassword" type="password" class="form-control @error('oldPassword') is-invalid @enderror"
+                        id="oldPassword" >
+                    @error('oldPassword')
+                        {{ $message }}
+                    @enderror
+                </div>
+                <div style="margin-left: -990px; margin-right: 200px;">
+                    <label for="newPassword" style="font-size: medium">Password Baru</label>
+                    <input name="newPassword" type="password" class="form-control @error('newPassword') is-invalid @enderror"
+                        id="newPassword" >
+                    @error('newPassword')
+                        {{ $message }}
+                    @enderror
+                </div>
+                <div style="margin-left: -990px; margin-right: 200px">
+                    <label for="phoneNumber" style="font-size: medium">No Telepon</label>
+                    <input name="phoneNumber" type="text" class="form-control @error('phoneNumber') is-invalid @enderror"
+                        id="phoneNumber" value="{{ Auth::guard('walimurid')->user()->phone_number }}">
+                    @error('phoneNumber')
+                        {{ $message }}
+                    @enderror
+                </div>
+                <button class="btn btn-primary" type="submit"
+                    style="margin-top: 30px; margin-left: -990px; background: rgb(185, 39, 39)">Submit</button>
             </form>
         </nav>
     </section>

@@ -23,15 +23,9 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('walimurid/profile') }}">
+            <a href="{{ url('walimurid/profile') }}" class="{{ (request()->is('walimurid/profile')) ? 'active' : '' }}"">
                 <i class='bx bx-user'></i>
                 <span class="links_name">Edit Profile</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url('walimurid/chat') }}">
-                <i class='bx bx-message'></i>
-                <span class="links_name">Chat</span>
             </a>
         </li>
         <li class="log_out">

@@ -13,29 +13,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
         integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Hello, world!</title>
+    <title>RPL THOMATH</title>
 </head>
 
 <body>
-    @include('siswa.partials.sidebar')
+    @include('ai.partials.sidebar')
     <section class="home-section">
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="dashboard">Cari Video</span>
             </div>
-            <div class="search-form-container">
-                <form class="form-control" id="keywordForm" method="post" action="{{ url('search') }}">
+            <div>
+                <form id="keywordForm" method="post" action="{{ url('search') }}">
                     @csrf
                     <div class="input-row">
-                        <label for="keyword" class="form-label" style="margin-left: -110px; margin-top: 80px; color: black">Cari: </label>
-                        <input class="form-control" type="search" id="keyword" name="keyword" placeholder="Enter Search Keyword" style="margin-top: -30px; margin-left: -40px; width: 300px">
+                        <label for="keyword" class="form-label" style="margin-left: -110px; margin-top: 200px; color: black">Cari: </label>
+                        <input class="form-control" type="search" id="keyword" name="keyword" placeholder="Enter Search Keyword" style="margin-top: -30px; margin-left: -70px; width: 300px">
                         <span class="text-danger" id="nameErrorMsg"></span>
                     </div>
                     <input class="btn btn-primary mt-3" type="submit" name="submit" value="Search" style="margin-left: -110px; background: rgb(185, 39, 39)">
                 </form>
             </div>
-            <div class="container-fluid mt-5">
+            <br>
+            <div>
                 <div class="row gx-2">
                     @if (!is_string($data))
                         @foreach ($data as $item)

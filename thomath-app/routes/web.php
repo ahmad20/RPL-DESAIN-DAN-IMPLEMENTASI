@@ -10,6 +10,7 @@ use App\Http\Controllers\KonsultasiController;
 use App\Http\Controllers\LihatNilaiController;
 use App\Http\Controllers\TeacherTestController;
 use App\Http\Controllers\CourseMaterialController;
+use App\Http\Controllers\AiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::prefix('walimurid')->name('walimurid.')->group(function(){
         Route::get('/logout', [WaliMuridController::class, 'logout']);
         Route::get('/konsultasi', [KonsultasiController::class, 'view']);
         Route::get('/lihat-nilai', [LihatNilaiController::class, 'view']);
+        Route::get('/profile', [WaliMuridController::class, 'profile']);
         
     });
 });
@@ -56,6 +58,7 @@ Route::prefix('pengajar')->name('pengajar.')->group(function(){
         Route::get('/singlecourse/{id_course}', [PengajarController::class, 'singleCourseView']);
         Route::get('/course/delete/{id_course}', [CourseController::class, 'destroy']);
         Route::get('/course/edit/{id_course}', [CourseController::class, 'edit']);
+        Route::get('/singletest/{id_test}', [PengajarController::class, 'singleTestView']);
 
         //Route::get('konsultasi', [KonsultasiController::class, 'view']);
     });
@@ -85,11 +88,12 @@ Route::prefix('siswa')->name('siswa.')->group(function(){
 //     Route::get('/login/wali', [LandingController::class, 'loginWaliView']);
 // });
 
-Route::get('/ai', [PengajarController::class, 'searchVideoView']);
-Route::post('/search', [PengajarController::class, 'searchVideo']);
+Route::get('/ai', [AiController::class, 'searchVideoView']);
+Route::post('/search', [AiController::class, 'searchVideo']);
 Route::post('walimurid/register', [WaliMuridController::class, 'registerWali']);
 Route::post('walimurid/login', [WaliMuridController::class, 'loginWali']);
 Route::post('walimurid/konsultasi/{id_wali}', [KonsultasiController::class, 'store']);
+Route::post('walimurid/profile/{id_wali}', [WaliMuridController::class, 'updateProfile']);
 
 Route::post('pengajar/course/tambah/{id_pengajar}', [CourseController::class, 'store']);
 Route::post('pengajar/course-material/tambah', [CourseMaterialController::class, 'store']);

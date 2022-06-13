@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use App\Models\Course;
+use App\Models\TestPaper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +24,6 @@ class SiswaController extends Controller
     public function assignCourse(Request $request, $id_course){
         $siswa = Auth()->guard('siswa')->user();
         $course = Course::findOrFail($id_course);
-        // if($siswa->id_siswa==)
 
         foreach($siswa->course->all() as $ss){
             //siswa sudah terdaftar di course tersebut
@@ -37,11 +37,12 @@ class SiswaController extends Controller
     }
     public function singleCourseView($id_course){
         $course = Course::findOrFail($id_course);
+        $test = TestPaper::where('id_course', $course->id_course)->get();
         $cm = $course->coursematerial;
         if ($cm==null){
             $cm="Kosong";
         }
-        return view('siswa.singlecourse', ['course'=>$course, 'cm'=>$cm]);
+        return view('siswa.singlecourse', ['course'=>$course, 'cm'=>$cm, 'test'=>$test]);
     }
     public function loginSiswaView(){
         return view('siswa.login');

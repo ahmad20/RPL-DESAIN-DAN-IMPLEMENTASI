@@ -27,52 +27,25 @@
             </div>
             <div class="profile-details">
                 <i class="glyphicon glyphicon-user"></i>
-                <span class="admin_name">{{ Auth::guard('siswa')->user()->name }}</span>
+                <span class="admin_name">{{ Auth::guard('pengajar')->user()->name }}</span>
             </div>
-        </nav>
 
-        <div class="col d-flex">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">{{ $course->name }}</h3>
-                    <p>Deskripsi : {{ $course->description }}</p>
-                    <p>Dibuat Oleh : {{ $course->pengajar->name }}</p>
-                </div>
+            <div style="margin-top:100px">
+                <h3>Test Detail</h3>
+                <p>Course Name : {{ $test->course->name }}</p>
+                <p>Due Date : {{ $test->due_date }}</p>
+                <p>Questions : </p>
+                <p>{{ $test->question}}</p>
+
+                <ul>List Siswa :
+                    @foreach ($test->course->siswa as $s)
+                    {{-- //buat link ke pengerjaan masing2 --}}
+                        <li>{{ $s->name }}</li>
+                    @endforeach
+                </ul>
             </div>
-        </div>
-        <div class="col d-flex">
-            <div class="card">
-                <div class="card-body">
-                    <h3>Materi : </h3>
-                    @if (is_string($cm))
-                        <p>{{ 'Belum Ada Materi' }}</p>
-                    @else
-                        <ul>
-                            <li>Slide :<a href="https://{{ $cm->slide }}">{{ $cm->slide }}</a></li>
-                            <li>Video :<a href="https://{{ $cm->video }}">{{ $cm->video }}</a></li>
-                            <li>Kuis :<a href="https://{{ $cm->kuis }}">{{ $cm->kuis }}</a></li>
-                            <li>Tugas :<a href="https://{{ $cm->tugas }}">{{ $cm->tugas }}</a></li>
-                            <li>Referensi :<a href="https://{{ $cm->referensi }}">{{ $cm->referensi }}</a></li>
-                        </ul>
-                    @endif
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h3>Tugas : </h3>
-                    @if (is_string($cm))
-                        <p>{{ 'Belum Ada Materi' }}</p>
-                    @else
-                        <ul>
-                            @foreach ($test as $t)
-                                <li>{{ 'Deadline : ' . $t->due_date }}</li>
-                            @endforeach
-                            
-                        </ul>
-                    @endif
-                </div>
-            </div>
-        </div>
+
+        </nav>
     </section>
 
     <script>
