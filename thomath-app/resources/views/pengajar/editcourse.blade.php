@@ -48,7 +48,7 @@
                         {{ $message }}
                     @enderror
                 </div>
-                <button class="btn btn-primary" type="submit"
+                <button class="btn btn-primary" type="submit" name="submit"
                     style="margin-top: 30px; margin-left: -990px; background: rgb(185, 39, 39)">Edit Course</button>
             </form>
         </nav>

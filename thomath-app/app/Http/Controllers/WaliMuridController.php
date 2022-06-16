@@ -121,4 +121,50 @@ class WaliMuridController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
+    public function profile(){
+        return view('wali.profile');
+    }
+    public function updateProfile(Request $request, $id_wali){
+        // $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'oldPassword' => 'required',
+        //     'newPassword' => 'required',
+        // ]);
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->newPassword,
+            'phone_number' => $request->phoneNumber,
+        ];
+        
+        if(Auth::guard('walimurid')->attempt(['email' => $request->email, 'password' => $request->oldPassword])){
+
+            $wali = WaliMurid::find($id_wali);
+            //jika nama baru = nama lama
+            if($wali->email==$request->email){
+                $validated = $request->validate([
+                    'name' => 'required',
+                    'email' => 'required',
+                    'oldPassword' => 'required',
+                    'newPassword' => 'required|min:5',
+                    'phoneNumber' => 'required|regex:/^(08)[0-9]{6,15}/'
+                ]);
+            }else{
+                $validated = $request->validate([
+                    'name' => 'required',
+                    'email' => 'required|unique:wali_murid',
+                    'oldPassword' => 'required',
+                    'newPassword' => 'required|min:5',
+                    'phoneNumber' => 'required|regex:/^(08)[0-9]{6,15}/'
+                ]);
+            }
+            $data['password'] = bcrypt($data['password']);
+            $wali->update($data);
+            return redirect()->intended('walimurid/dashboard');
+        }
+        else {
+            return redirect()->back();  
+        }
+    }
 }

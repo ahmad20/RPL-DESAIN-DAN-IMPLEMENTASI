@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/course.css">
+    {{-- <link rel="stylesheet" href="/css/dashboard.css"> --}}
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -16,44 +17,35 @@
 </head>
 
 <body>
-    @include('siswa.partials.sidebar')
+    @include('pengajar.partials.sidebar')
 
     <section class="home-section">
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Course</span>
+                <span class="dashboard">Dashboard</span>
             </div>
             <div class="profile-details">
                 <i class="glyphicon glyphicon-user"></i>
-                <span class="admin_name">{{ $siswa->name }}</span>
+                <span class="admin_name">{{ Auth::guard('pengajar')->user()->name }}</span>
             </div>
+
+            <div style="margin-top:100px">
+                <h3>Test Detail</h3>
+                <p>Course Name : {{ $test->course->name }}</p>
+                <p>Due Date : {{ $test->due_date }}</p>
+                <p>Questions : </p>
+                <p>{{ $test->question}}</p>
+
+                <ul>List Siswa :
+                    @foreach ($test->course->siswa as $s)
+                    {{-- //buat link ke pengerjaan masing2 --}}
+                        <li>{{ $s->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+
         </nav>
-
-        <div class="col d-flex">
-            @if ($courses->count() == 0)
-                {{ 'belum ada' }}
-            @else
-                @foreach ($courses as $c)
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $c->name }}</h5>
-                            <a href="singlecourse/{{ $c->id_course }}">
-                                <p> More Details</p>
-                            </a>
-                            <div class="input-group input-group-lg mt-5">
-                                <a href="/siswa/course/assign/{{ $c->id_course }}" style="text-decoration: none">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                    Masuk Kelas
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endif
-        </div>
-
-
     </section>
 
     <script>
