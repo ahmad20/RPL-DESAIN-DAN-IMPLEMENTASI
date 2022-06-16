@@ -43,7 +43,7 @@ class WaliMuridController extends Controller
             'name' => 'required|min:3|max:255',
             'email' => 'required|email:dns|unique:wali_murid',
             'password' => 'required|min:5',
-            'phone_number' => 'required|regex:/^(08|628)[0-9]{6,15}/'
+            'phone_number' => 'required|regex:/^(08)[0-9]{6,15}/'
         ]);
         $validated['password'] = bcrypt($validated['password']);
         $user = WaliMurid::create($validated);

@@ -22,20 +22,21 @@
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="dashboard">Dashboard</span>
             </div>
-            <div class="search-box">
-                <input type="text" placeholder="Search...">
-                <i class='bx bx-search'></i>
-            </div>
             <div class="profile-details">
                 <i class="glyphicon glyphicon-user"></i>
                 <div class="admin_name">{{ ucwords(Auth::guard('walimurid')->user()->name) }}</div>
             </div>
         </nav>
         <img class="anaksd" src="/image/anaksd.png" alt="">
-        <h3>Data Diri</h3>
-        <p> Email : {{Auth::guard('walimurid')->user()->email }}</p>
-        <p> Nama : {{Auth::guard('walimurid')->user()->name }}</p>
-        <p> Nomor Telepon : {{Auth::guard('walimurid')->user()->phone_number }}</p>
+        <div class="card1">
+            <div class="card-body1" style="background: white; margin-left: 20px; width: 990px">
+                <h2 style="margin-top: -70px; font-weight: bold; font-size:25px">Halo, Selamat Datang di Thomath</h2>
+                <h3 style="margin-top: 10px;">Data Diri</h3>
+                <p style="font-size: small"> Email : {{Auth::guard('walimurid')->user()->email }}</p>
+                <p style="font-size: small"> Nama : {{Auth::guard('walimurid')->user()->name }}</p>
+                <p style="font-size: small"> Nomor Telepon : {{Auth::guard('walimurid')->user()->phone_number }}</p>
+            </div>
+        </div>
         <script>
             let sidebar = document.querySelector(".sidebar");
             let sidebarBtn = document.querySelector(".sidebarBtn");

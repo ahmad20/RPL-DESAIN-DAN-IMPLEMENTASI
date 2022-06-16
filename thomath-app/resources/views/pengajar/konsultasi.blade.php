@@ -6,95 +6,64 @@
     <link rel="stylesheet" href="/css/lihatnilai.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
-        integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>RPL THOMATH</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    @include('pengajar.partials.sidebar')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
 </head>
 
 <body>
-    @include('pengajar.partials.sidebar')
-
     <section class="home-section">
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="course">Daftar Konsultasi</span>
+                <span class="course">List Daftar</span>
             </div>
-        <div class="section-body" style="width:100%; margin-top: 120px; margin-left: -180px">
+            
+        </nav>
+        
+    </section>
+    <section class="home-section" style="padding-left: 20px; padding-right: 20px;margin-top: -20px">
+       
             <div class="table-responsive">
-                <table id="myTable">
+                <table id="myTable" class="display" style="width:100%;">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th >#</th>
                             <th>Email</th>
                             <th>Topik</th>
-                            <th>Tahun</th>
+                            <th>Tahun Ajar</th>
                             <th>Tanggal</th>
                             <th>Deskripsi</th>
                             <th>Action</th>
                         </tr>
-                        
                     </thead>
                     <tbody>
-                        {{-- @foreach ($data as $k)
+                        @foreach ($data as $key => $result)
                             <tr>
-                                <td>{{ $k->id_konsultasi }}</td>
-                                <td>{{ $k->email }}</td>
-                                <td>{{ $k->topik }}</td>
-                                <td>{{ $k->tahun }}</td>
-                                <td>{{ $k->tanggal }}</td>
-                                <td>{{ $k->deskripsi }}</td>
-                                <td>
-                                    <form action="{{ url('konsultasi/assign', $k->id_konsultasi) }}" method="post">
-                                        @csrf
-                                        <button class="btn btn-danger" type="submit">Accept</button>
-                                    </form>
-                                </td>
+                                <th>{{ $key + 1 }}</th>
+                                <td>{{ $result->email }}</td>
+                                <td>{{ $result->topik}}</td>
+                                <td>{{ $result->tahun}}</td>
+                                <td>{{ $result->tanggal}}</td>
+                                <td>{{ $result->deskripsi}}</td>
+                                <td> <center>
+                                    <button type="button" class="btn btn-success">Accept</button>
+                                    <button type="button" class="btn btn-danger">Decline</button>
+                                </center>
+                                    
+                                    </td>
                             </tr>
-                        @endforeach --}}
-                        <tr>
-                            <th>#</th>
-                            <th>Email</th>
-                            <th>Topik</th>
-                            <th>Tahun</th>
-                            <th>Tanggal</th>
-                            <th>Deskripsi</th>
-                            <th>Action</th>
-                        </tr>
-                        <tr>
-                            <th>#</th>
-                            <th>Email</th>
-                            <th>Topik</th>
-                            <th>Tahun</th>
-                            <th>Tanggal</th>
-                            <th>Deskripsi</th>
-                            <th>Action</th>
-                        </tr>
-                        <tr>
-                            <th>#</th>
-                            <th>Email</th>
-                            <th>Topik</th>
-                            <th>Tahun</th>
-                            <th>Tanggal</th>
-                            <th>Deskripsi</th>
-                            <th>Action</th>
-                        </tr>
-                        <tr>
-                            <th>#</th>
-                            <th>Email</th>
-                            <th>Topik</th>
-                            <th>Tahun</th>
-                            <th>Tanggal</th>
-                            <th>Deskripsi</th>
-                            <th>Action</th>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                
             </div>
-        </div>
-    </nav>
+        
+        
+    </section>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
         <script>
             let sidebar = document.querySelector(".sidebar");
             let sidebarBtn = document.querySelector(".sidebarBtn");
@@ -105,8 +74,11 @@
                 } else
                     sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
             }
-        </script>
 
+            $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+    </script>
 </body>
 
 </html>

@@ -27,53 +27,53 @@
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="course">Profile</span>
+                <span class="course">Edit Profile</span>
             </div>
             <form method="POST"
                 action="{{ url('walimurid/profile', Auth::guard('walimurid')->user()->id_wali_murid) }}">
                 @csrf
-                <div style="margin-top: 510px; margin-left: -990px; margin-right: 200px">
-                    <label for="courseName" style="font-size: medium">Name</label>
-                    <input name="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                <div style="margin-top: 400px; margin-left: -990px; margin-right: 200px">
+                    <label for="courseName" style="font-size: small">Nama</label>
+                    <input style="margin-left: 60px; margin-top:-35px" name="name" type="text" class="form-control @error('name') is-invalid @enderror"
                         id="courseName" value="{{ Auth::guard('walimurid')->user()->name }}"  autofocus>
                     @error('name')
                         {{ $message }}
                     @enderror
                 </div>
-                <div style="margin-left: -990px; margin-right: 200px;">
-                    <label for="email" style="font-size: medium">Email</label>
-                    <input name="email" type="text" class="form-control @error('email') is-invalid @enderror"
+                <div style="margin-left: -990px; margin-right: 200px; margin-top:20px">
+                    <label for="email" style="font-size: small">Email</label>
+                    <input style="margin-left: 60px; margin-top:-35px" name="email" type="text" class="form-control @error('email') is-invalid @enderror"
                         id="email" value="{{ Auth::guard('walimurid')->user()->email }}"  >
                     @error('email')
                         {{ $message }}
                     @enderror
                 </div>
-                <div style="margin-left: -990px; margin-right: 200px;">
-                    <label for="oldPassword" style="font-size: medium">Password Lama</label>
-                    <input name="oldPassword" type="password" class="form-control @error('oldPassword') is-invalid @enderror"
-                        id="oldPassword" >
-                    @error('oldPassword')
-                        {{ $message }}
-                    @enderror
-                </div>
-                <div style="margin-left: -990px; margin-right: 200px;">
-                    <label for="newPassword" style="font-size: medium">Password Baru</label>
-                    <input name="newPassword" type="password" class="form-control @error('newPassword') is-invalid @enderror"
-                        id="newPassword" >
-                    @error('newPassword')
-                        {{ $message }}
-                    @enderror
-                </div>
-                <div style="margin-left: -990px; margin-right: 200px">
-                    <label for="phoneNumber" style="font-size: medium">No Telepon</label>
-                    <input name="phoneNumber" type="text" class="form-control @error('phoneNumber') is-invalid @enderror"
+                <div style="margin-left: -990px; margin-right: 240px; margin-top:20px">
+                    <label for="phoneNumber" style="font-size: small">No Telepon</label>
+                    <input style="margin-left: 100px; margin-top:-35px" name="phoneNumber" type="text" class="form-control @error('phoneNumber') is-invalid @enderror"
                         id="phoneNumber" value="{{ Auth::guard('walimurid')->user()->phone_number }}">
                     @error('phoneNumber')
                         {{ $message }}
                     @enderror
                 </div>
+                <div style="margin-left: -990px; margin-right: 280px; margin-top:20px">
+                    <label for="oldPassword" style="font-size: small">Password Lama</label>
+                    <input style="margin-left: 140px; margin-top:-35px" name="oldPassword" type="password" class="form-control @error('oldPassword') is-invalid @enderror"
+                        id="oldPassword" >
+                    @error('oldPassword')
+                        {{ $message }}
+                    @enderror
+                </div>
+                <div style="margin-left: -990px; margin-right: 280px; margin-top:20px">
+                    <label for="newPassword" style="font-size: small">Password Baru</label>
+                    <input style="margin-left: 140px; margin-top:-35px" name="newPassword" type="password" class="form-control @error('newPassword') is-invalid @enderror"
+                        id="newPassword" >
+                    @error('newPassword')
+                        {{ $message }}
+                    @enderror
+                </div>
                 <button class="btn btn-primary" type="submit"
-                    style="margin-top: 30px; margin-left: -990px; background: rgb(185, 39, 39)">Submit</button>
+                    style="margin-top: 30px; margin-left: -990px; background-color: rgb(185, 39, 39)">Submit</button>
             </form>
         </nav>
     </section>

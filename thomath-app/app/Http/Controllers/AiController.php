@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class AiController extends Controller
 {
     public function searchVideoView(){
-        return view('ai.video', ['data'=>"Silakan Lakukan Pencarian"]);
+        return view('ai.video', ['data'=>" "]);
     }
     public function searchVideo(Request $request){
         //google api

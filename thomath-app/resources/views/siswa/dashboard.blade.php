@@ -38,10 +38,10 @@
         <div class="card1">
             <div class="card-body1" style="background: white; margin-left: 20px; width: 990px">
                 <h2 style="margin-top: -70px; font-weight: bold">Halo, Selamat Datang di Thomath</h2>
-                <h3 style="margin-top: 30px">Data Diri</h3>
-                <p> Email : {{ $siswa->email }}</p>
-                <p> Nama : {{ $siswa->name }}</p>
-                <p> Nomor Telepon : {{ $siswa->phone_number }}</p>
+                <h3 style="margin-top: 10px;">Data Diri</h3>
+                <p style="font-size: small"> Email : {{ $siswa->email }}</p>
+                <p style="font-size: small"> Nama : {{ $siswa->name }}</p>
+                <p style="font-size: small"> Nomor Telepon : {{ $siswa->phone_number }}</p>
             </div>
         </div>
         <div class="col d-flex">
