@@ -29,21 +29,19 @@
                 <i class="glyphicon glyphicon-user"></i>
                 <span class="admin_name">{{ Auth::guard('pengajar')->user()->name }}</span>
             </div>
-
-            <div style="margin-top:100px">
-                <h3>Course Detail</h3>
-                <p>Course Name : {{ $c->name }}</p>
-                <p>Description  : {{ $c->description }}</p>
-                <p>Created At : {{ $c->created_at }}</p>
-                <p>Last Update : {{ $c->updated_at }}</p>
-                <ul>List Siswa :
-                @foreach ($c->siswa as $s)
-                    <li>{{ $s->name }}</li>
-                @endforeach
-                </ul>
-            </div>
-
         </nav>
+        <div style="padding-top:100px; padding-left: 70px; margin-right:500px">
+            <h3 style="margin-bottom: 20px">Course Detail</h3>
+            <p>Course Name : <a class="form-control" style="margin-left: 80px; margin-top:-25px; padding-top: 10px; margin-bottom: 20px">{{ $c->name }}</a></p>
+            <p>Description  : <a class="form-control" style="margin-left: 80px; margin-top:-25px; padding-top: 10px; margin-bottom: 20px">{{ $c->description }}</a></p>
+            <p>Created At : <a class="form-control" style="margin-left: 80px; margin-top:-25px; padding-top: 10px; margin-bottom: 20px">{{ $c->created_at }}</a></p>
+            <p>Last Update : <a class="form-control" style="margin-left: 80px; margin-top:-25px; padding-top: 10px; margin-bottom: 20px">{{ $c->updated_at }}</a></p>
+            <ul style="list-style-type: none">List Siswa :
+            @foreach ($c->siswa as $s)
+                <li class="form-control" style="margin-left: 80px; margin-top:-25px; padding-top: 10px; margin-bottom: 30px">{{ $s->name }}</li>
+            @endforeach
+            </ul>
+        </div>
     </section>
 
     <script>

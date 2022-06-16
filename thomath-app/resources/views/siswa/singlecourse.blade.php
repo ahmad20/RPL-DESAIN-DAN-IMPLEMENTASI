@@ -47,7 +47,7 @@
                     @if (is_string($cm))
                         <p>{{ 'Belum Ada Materi' }}</p>
                     @else
-                        <ul>
+                        <ul style="margin-left: 15px">
                             <li>Slide :{{ $cm->slide }}</li>
                             <li>Video :{{ $cm->video }}</li>
                             <li>Kuis :{{ $cm->kuis }}</li>

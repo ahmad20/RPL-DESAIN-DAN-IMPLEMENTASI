@@ -22,7 +22,7 @@
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="course">Daftar Konsultasi</span>
             </div>
-        <div class="section-body" style="width:100%; margin-top: 120px; margin-left: -180px">
+        <div class="section-body" style="width:100%; margin-top: 200px; margin-left: -180px">
             <div class="table-responsive">
                 <table id="myTable">
                     <thead>

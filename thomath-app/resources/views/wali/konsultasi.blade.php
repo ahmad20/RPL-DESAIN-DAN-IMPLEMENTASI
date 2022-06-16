@@ -23,9 +23,9 @@
                 <i class='bx bx-menu sidebarBtn'></i>
                 <span class="dashboard">Pendaftaran Konsultasi</span>
             </div>
-            <h3 style="margin-left: -1130px; margin-top: 180px; color: rgb(185, 39, 39); font-family: sans-serif;"><i
+            <h3 style="margin-left: -1080px; margin-top: 160px; color: rgb(185, 39, 39); font-family: sans-serif;"><i
                     class="fa fa-file-o"></i> Filing Form</h3>
-            <div class="main-header">
+            <div class="main-header" style="margin-right: 150px">
                 <br>
                 <form method="POST"
                     action="{{ url('walimurid/konsultasi', Auth::guard('walimurid')->user()->id_wali_murid) }}">

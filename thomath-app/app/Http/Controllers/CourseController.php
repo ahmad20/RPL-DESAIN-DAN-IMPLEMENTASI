@@ -57,6 +57,7 @@ class CourseController extends Controller
                 'name' => 'required', //validasi kolom name dengan aturan required dan unique
                 'description' => 'required'
             ]);
+        // jika nama baru != nama lama
         }else{
             $validated = $request->validate([
                 'name' => 'required|unique:course', //validasi kolom name dengan aturan required dan unique
