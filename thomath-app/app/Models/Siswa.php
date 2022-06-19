@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Course;
+use App\Models\TestPaper;
+use App\Models\WaliMurid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,5 +26,11 @@ class Siswa extends Authenticatable
     ];
     public function course(){
         return $this->belongsToMany(Course::class);
+    }
+    public function testpaper(){
+        return $this->belongsToMany(TestPaper::class);
+    }
+    public function walimurid(){
+        return $this->belongsTo(WaliMurid::class);
     }
 }

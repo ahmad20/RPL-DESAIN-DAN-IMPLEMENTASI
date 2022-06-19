@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Siswa;
 use App\Models\Course;
 use App\Models\TestPaper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class SiswaController extends Controller
@@ -35,6 +37,29 @@ class SiswaController extends Controller
         $siswa->course()->attach($course);
         return redirect()->to('siswa/dashboard')->with('success', 'berhasil menambahkan');
     }
+    public function answerTest(Request $request, $id_test){
+        $siswa = Auth()->guard('siswa')->user();
+        $test = TestPaper::findOrFail($id_test);
+        $now = new DateTime();
+        $now = $now->format('Y-m-d H:i:s');
+        $pesan = 'Jawaban sudah diubah';
+        if ($now>$test->due_date){
+            $pesan = "Waktu sudah lewat";
+            return redirect()->to('siswa/dashboard')->with('success', $pesan);
+        }
+        //jika kosong maka tambahkan
+        if($siswa->testpaper()->where('test_paper_id_testpaper', $id_test)->get()->isEmpty()){
+            $siswa->testpaper()->attach($test);
+            $pesan = "Jawaban berhasil dikumpulkan";
+        }
+        //jika kosong maupun tidak maka update jawaban
+        $siswa_test = DB::table('siswa_test_paper')
+                    ->where('test_paper_id_testpaper', $test->id_testpaper)
+                    ->where('siswa_id_siswa', $siswa->id_siswa)
+                    ->update(['answer' => $request->answer]);
+
+        return redirect()->to('siswa/dashboard')->with('success', $pesan);
+    }
     public function singleCourseView($id_course){
         $course = Course::findOrFail($id_course);
         $test = TestPaper::where('id_course', $course->id_course)->get();
@@ -43,6 +68,12 @@ class SiswaController extends Controller
             $cm="Kosong";
         }
         return view('siswa.singlecourse', ['course'=>$course, 'cm'=>$cm, 'test'=>$test]);
+    }
+    public function singleTestView($id_test){
+        $siswa = Auth()->guard('siswa')->user();
+        $test = TestPaper::findOrFail($id_test);
+        $siswa_test = DB::table('siswa_test_paper')->where('test_paper_id_testpaper', $test->id_testpaper)->where('siswa_id_siswa', $siswa->id_siswa);
+        return view('siswa.singletest', ['test' => $test, 'test_siswa'=>$siswa_test]);
     }
     public function loginSiswaView(){
         return view('siswa.login');

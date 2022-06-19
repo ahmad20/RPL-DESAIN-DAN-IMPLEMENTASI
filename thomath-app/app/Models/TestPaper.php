@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Siswa;
 use App\Models\Course;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,8 +10,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class TestPaper extends Model
 {
     use HasFactory;
-    protected $table = 'test_paper';
-    protected $primaryKey = 'id_test_paper';
+    protected $table = 'testpaper';
+    protected $primaryKey = 'id_testpaper';
     protected $fillable =[
         'due_date',
         'question',
@@ -18,5 +19,8 @@ class TestPaper extends Model
     ];
     public function course(){
         return $this->belongsTo(Course::class, 'id_course');
+    }
+    public function siswa(){
+        return $this->belongsToMany(Siswa::class);
     }
 }

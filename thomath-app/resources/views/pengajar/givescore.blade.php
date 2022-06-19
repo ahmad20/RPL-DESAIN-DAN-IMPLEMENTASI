@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/course.css">
+    {{-- <link rel="stylesheet" href="/css/dashboard.css"> --}}
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -16,41 +17,38 @@
 </head>
 
 <body>
-    @include('siswa.partials.sidebar')
+    @include('pengajar.partials.sidebar')
 
     <section class="home-section">
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Course</span>
+                <span class="dashboard">Dashboard</span>
             </div>
             <div class="profile-details">
                 <i class="glyphicon glyphicon-user"></i>
-                <span class="admin_name">{{ $siswa->name }}</span>
+                <span class="admin_name">{{ Auth::guard('pengajar')->user()->name }}</span>
             </div>
+            <p style="margin-top: 120px; margin-left: -990px; margin-right: 200px;">Pertanyaan : </p>
+            <p style="margin-top: 120px; margin-left: -990px; margin-right: 200px;">Isi Pertanyaan</p>
+            <p style="margin-top: 120px; margin-left: -990px; margin-right: 200px;">Jawaban : </p>
+            <p style="margin-top: 120px; margin-left: -990px; margin-right: 200px;">Isi Jawaban</p>
+            <form method="POST"
+                action="/singletest/{{ $test_siswa->test_paper_id_testpaper }}/{{ $test_siswa->siswa_id_siswa }}">
+                @csrf
+                <div style="margin-top: 420px; margin-left: -990px; margin-right: 200px;">
+                    <label for="score" style="font-size: medium">Nilai</label>
+                    <input type="text" class="form-control @error('score') is-invalid @enderror" id="score"
+                        name="score" value={{ $test_siswa->score }} />
+                    @error('score')
+                        {{ $message }}
+                    @enderror
+                </div>
+                <button class="btn btn-primary" type="submit"
+                    style="margin-top: 30px; margin-left: -990px; background: rgb(185, 39, 39)">Submit</button>
+            </form>
         </nav>
-
-        <div class="col d-flex">
-            @if ($courses->count() == 0)
-                {{ 'belum ada' }}
-            @else
-                @foreach ($courses as $c)
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $c->name }}</h5>
-                            <div class="input-group input-group-lg mt-5">
-                                <a href="/siswa/course/assign/{{ $c->id_course }}" style="text-decoration: none">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                    Masuk Kelas
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endif
-        </div>
-
-
+       
     </section>
 
     <script>

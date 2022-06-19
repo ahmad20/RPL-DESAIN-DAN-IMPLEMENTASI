@@ -58,6 +58,47 @@
                 </div>
             </div>
         </div>
+        @if (is_string($test))
+            <div class="col d-flex">
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Tugas : </h3>
+                        <p>{{ 'Belum Ada Tugas' }}</p>
+                    </div>
+                </div>
+            </div>
+        @else
+            <div class="col d-flex">
+                <?php
+                $now = new DateTime();
+                $now = $now->format('Y-m-d H:i:s');
+                foreach ($test as $t) {
+                    if ($now > $t->due_date) {
+                        echo "<div class='card'>";
+                        echo "<div class='card-body'>";
+                        echo "<h3 style='color:red;'>" . e($t->course->name) . "(Closed)</h3>";
+                        echo "<ul style='margin-left: 15px'>";
+                        echo "<li style='color:red;'>Due Date :" . e($t->due_date) . "</li>";
+                        echo '</ul>';
+                        echo '</div>';
+                        echo '</div>';
+                    } else {
+                        echo "<a href='../singletest/". e($t->id_testpaper) ."'>";
+                        echo "<div class='card'>";
+                        echo "<div class='card-body'>";
+                        echo "<h3>" . e($t->course->name) . "</h3>";
+                        echo "<ul style='margin-left: 15px'>";
+                        echo '<li>Due Date :' . e($t->due_date) . '</li>';
+                        echo '</ul>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</a>';
+                    }
+                }
+                ?>
+            </div>
+        @endif
+
     </section>
 
     <script>

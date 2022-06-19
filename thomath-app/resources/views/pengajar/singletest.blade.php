@@ -29,21 +29,42 @@
                 <i class="glyphicon glyphicon-user"></i>
                 <span class="admin_name">{{ Auth::guard('pengajar')->user()->name }}</span>
             </div>
+        </nav>
+        <div style="padding-top:100px; padding-left: 70px; margin-right:500px">
+            <h3 style="margin-bottom: 20px">Course Detail</h3>
+            <table style="width:auto; border:1px solid-black;">
+                <tr>
+                    <th>Course Name </th>
+                    <td>{{ ': ' . $test->course->name }}</td>
+                </tr>
+                <tr>
+                    <th>Due Date </th>
+                    <td>{{ ': ' . $test->due_date }}</td>
+                </tr>
+            </table>
+            <p>Pertanyaan : </p>
+            <p>{!! $test->question !!}</p>
+            <p class="mb-2">List Siswa :</p>
+            <ul type>
+                @foreach ($test->course->siswa as $s)
+                    <li class="m-1"><a href="{{ $test->id_testpaper }}/{{$s->id_siswa}}">{{ $s->name }}</a></li>
+                @endforeach
+            </ul>
+        </div>
+        {{-- <div style="margin-top:100px">
+            <h3>Test Detail</h3>
+            <p>Course Name : {{ $test->course->name }}</p>
+            <p>Due Date : {{ $test->due_date }}</p>
+            <p>Questions : </p>
+            <p>{{ $test->question }}</p>
 
-            <div style="margin-top:100px">
-                <h3>Test Detail</h3>
-                <p>Course Name : {{ $test->course->name }}</p>
-                <p>Due Date : {{ $test->due_date }}</p>
-                <p>Questions : </p>
-                <p>{{ $test->question}}</p>
-
-                <ul>List Siswa :
-                    @foreach ($test->course->siswa as $s)
-                    {{-- //buat link ke pengerjaan masing2 --}}
-                        <li>{{ $s->name }}</li>
-                    @endforeach
-                </ul>
-            </div>
+            <ul>List Siswa :
+                @foreach ($test->course->siswa as $s)
+                    {{-- //buat link ke pengerjaan masing2
+                    <li>{{ $s->name }}</li>
+                @endforeach
+            </ul>
+        </div> --}}
 
         </nav>
     </section>

@@ -7,7 +7,9 @@ use App\Models\Course;
 use App\Models\Pengajar;
 use App\Models\TestPaper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\CourseController;
+
 class PengajarController extends Controller
 {
     public function dashboard(){
@@ -28,6 +30,24 @@ class PengajarController extends Controller
     public function singleCourseView(Request $request, $id_course){
         $course = Course::find($id_course);
         return view('pengajar.singlecourse', ['c'=>$course]);
+    }
+    public function siswaTaskView($id_test, $id_siswa){
+        $test = TestPaper::findOrFail($id_test);
+        $test_siswa = DB::table('siswa_test_paper')
+                        ->where('test_paper_id_testpaper', $id_test)
+                        ->where('siswa_id_siswa', $id_siswa)->first();
+        // return dd($test_siswa);
+        return view('pengajar.givescore', ['test_siswa'=>$test_siswa, 'test'=>$test]);
+    }
+    public function giveScore(Request $request, $id_test, $id_siswa){
+        $validated = $request->validate([
+          'score'=>'required|integer',  
+        ]);
+        DB::table('siswa_test_paper')
+                    ->where('test_paper_id_testpaper', $id_test)
+                    ->where('siswa_id_siswa', $id_siswa)
+                    ->update(['score' => $request->score]);
+        return redirect()->to('/pengajar/dashboard');
     }
     public function loginPengajarView(){
         return view('pengajar.login');

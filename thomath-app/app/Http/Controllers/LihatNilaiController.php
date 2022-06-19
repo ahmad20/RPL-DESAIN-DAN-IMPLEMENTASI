@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class NilaiController extends Controller
+class LihatNilaiController extends Controller
 {
     /** Menampilkan view nilai dari pengajar */
     public function view(){
@@ -13,38 +14,17 @@ class NilaiController extends Controller
     /**
      * Menambahkan course baru
      */
-    public function store(Request $request){
-        /** memvalidasi inputan */
-        $validated = $request->validate([
-            'name' => 'required|unique:name',
-        ]);
-
-        /** menambahkan course baru ke dalam database */
-        $course = Course::create(request(['name']));
-
-        /** redirect back */
-        return redirect()->back();
-    }
-    /** Menampilkan view edit course */
-    public function edit($id){
-        $course = Course::findOrFail($id);
-        return view('pengajar.editcourse', compact('course'));
-    }
-    /**Function untuk mengupdate course */
-    public function update(Request $request, $id){
-        /** memvalidasi inputan */
-        $validated = $request->validate([
-            'name' => 'required|unique:name',
-        ]);
-
-        /** Mengupdate data didatabase dengan id = $id */
-        Course::find($id)->update($validated);
-        /** redirect back */
-        return redirect()->back();
-    }
-    /** Menghapus data di database dengan id = $id */
-    public function destroy($id){
-        Course::findOrFail($id)->delete();
-        return redirect()->back();
+    public function scoreView(){
+        
+        $siswa = Auth()->guard('siswa')->user();
+        $wali_murid = Auth()->guard('walimurid')->user();
+        $view = 'siswa.showscore';
+        if ($wali_murid){
+            $siswa = $wali_murid->siswa;
+            $view = 'wali.showscore';  
+        }
+        $siswa_test = DB::table('siswa_test_paper')
+                ->where('siswa_id_siswa', $siswa->id_siswa)->orderBy('test_paper_id_testpaper')->get();
+        return view($view, ['test_siswa'=>$siswa_test]);
     }
 }

@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Siswa;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class WaliMurid extends Authenticatable
 {
@@ -25,9 +26,12 @@ class WaliMurid extends Authenticatable
         'email',
         'password',
         'phone_number',
-        'id_konsultasi'
+        'id_konsultasi',
+        'id_siswa'
     ];
-
+    public function siswa(){
+        return $this->belongsTo(Siswa::class, 'id_siswa');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

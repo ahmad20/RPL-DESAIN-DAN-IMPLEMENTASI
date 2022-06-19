@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('test_paper', function (Blueprint $table) {
-            $table->id('id_test_paper');
+        Schema::create('testpaper', function (Blueprint $table) {
+            $table->id('id_testpaper');
             $table->text('question');
             $table->dateTime('due_date');
             $table->foreignId('id_course');

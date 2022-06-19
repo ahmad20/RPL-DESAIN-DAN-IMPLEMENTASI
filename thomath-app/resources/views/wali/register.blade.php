@@ -70,6 +70,14 @@
                     {{ $message }}
                 </div>
             @enderror
+            <input style="width: 30%; margin-left: 700px; margin-top: 10px;" type="text"
+                class="form-control @error('emailanak') is-invalid @enderror" id="myInput" placeholder="Email Anak" name="emailanak"
+                value={{ old('emailanak') }}>
+            @error('emailanak')
+                <div class="invalid-feedback" style="margin-left: 700px">
+                    {{ $message }}
+                </div>
+            @enderror
             <button type="submit" class="btn"
                 style="margin-left: 700px; margin-top:20px; background-color: rgb(185, 39, 39); border-radius: 5px; font-family: sans-serif; font-size: medium; color: white; width: 10%;">Daftar</button>
             <br><span class="Daftar">Sudah punya akun?</span> <a href="{{ url('walimurid/login') }}"

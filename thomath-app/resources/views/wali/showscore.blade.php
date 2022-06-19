@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/lihatnilai.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -20,24 +20,15 @@
         <nav>
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Dashboard</span>
+                <span class="course">Lihat Nilai</span>
             </div>
-            <div class="profile-details">
-                <i class="glyphicon glyphicon-user"></i>
-                <div class="admin_name">{{ ucwords(Auth::guard('walimurid')->user()->name) }}</div>
-            </div>
-        </nav>
-        <img class="anaksd" src="/image/anaksd.png" alt="">
-        <div class="card1">
-            <div class="card-body1" style="background: white; margin-left: 20px; width: 990px">
-                <h2 style="margin-top: -70px; font-weight: bold; font-size:25px">Halo, Selamat Datang di Thomath</h2>
-                <h3 style="margin-top: 10px;">Data Diri</h3>
-                <p style="font-size: small"> Email : {{Auth::guard('walimurid')->user()->email }}</p>
-                <p style="font-size: small"> Nama : {{Auth::guard('walimurid')->user()->name }}</p>
-                <p style="font-size: small"> Nomor Telepon : {{Auth::guard('walimurid')->user()->phone_number }}</p>
-                <p style="font-size: small"> Anak : {{Auth::guard('walimurid')->user()->siswa->name }}</p>
-            </div>
+        <div class="section-body" style="width:100%; margin-top: 200px; margin-left: -180px">
+            @foreach ($test_siswa as $ts)
+                <h1>{{ $ts->score }}</h1>
+                
+            @endforeach
         </div>
+    </nav>
         <script>
             let sidebar = document.querySelector(".sidebar");
             let sidebarBtn = document.querySelector(".sidebarBtn");

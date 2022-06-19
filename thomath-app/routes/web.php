@@ -34,7 +34,7 @@ Route::prefix('walimurid')->name('walimurid.')->group(function(){
         Route::get('/dashboard', [WaliMuridController::class, 'dashboard']);
         Route::get('/logout', [WaliMuridController::class, 'logout']);
         Route::get('/konsultasi', [KonsultasiController::class, 'view']);
-        Route::get('/lihat-nilai', [LihatNilaiController::class, 'view']);
+        Route::get('/lihat-nilai', [LihatNilaiController::class, 'scoreView']);
         Route::get('/profile', [WaliMuridController::class, 'profile']);
         
     });
@@ -59,6 +59,7 @@ Route::prefix('pengajar')->name('pengajar.')->group(function(){
         Route::get('/course/delete/{id_course}', [CourseController::class, 'destroy']);
         Route::get('/course/edit/{id_course}', [CourseController::class, 'edit']);
         Route::get('/singletest/{id_test}', [PengajarController::class, 'singleTestView']);
+        Route::get('/singletest/{id_test}/{id_siswa}', [PengajarController::class, 'siswaTaskView']);
 
         //Route::get('konsultasi', [KonsultasiController::class, 'view']);
     });
@@ -75,6 +76,9 @@ Route::prefix('siswa')->name('siswa.')->group(function(){
         Route::get('/singlecourse/{id_course}', [SiswaController::class, 'singleCourseView']);
         Route::get('/course', [SiswaController::class, 'courseView']);
         Route::get('/course/assign/{id_course}', [SiswaController::class, 'assignCourse']);
+        Route::get('/singletest/{id_test}', [SiswaController::class, 'singleTestView']);
+        Route::get('/lihat-nilai', [LihatNilaiController::class, 'scoreView']);
+
         
     
         
@@ -99,6 +103,7 @@ Route::post('pengajar/course/tambah/{id_pengajar}', [CourseController::class, 's
 Route::post('pengajar/course-material/tambah', [CourseMaterialController::class, 'store']);
 Route::post('pengajar/test/tambah', [TeacherTestController::class, 'store']);
 Route::post('pengajar/course/update/{id_course}', [CourseController::class, 'update']);
+Route::post('/singletest/{id_test}/{id_siswa}', [PengajarController::class, 'giveScore']);
 
 Route::post('pengajar/register', [PengajarController::class, 'registerPengajar']);
 Route::post('pengajar/login', [PengajarController::class, 'loginPengajar']);
@@ -106,5 +111,5 @@ Route::post('/konsultasi/assign/{id_konsultasi}', [KonsultasiController::class, 
 
 Route::post('siswa/register', [SiswaController::class, 'registerSiswa']);
 Route::post('siswa/login', [SiswaController::class, 'loginSiswa']);
-
+Route::post('/singletest/{id_test}', [SiswaController::class, 'answerTest']);
 

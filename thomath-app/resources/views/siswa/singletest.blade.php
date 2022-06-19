@@ -27,23 +27,29 @@
             </div>
             <div class="profile-details">
                 <i class="glyphicon glyphicon-user"></i>
-                <span class="admin_name">{{ Auth::guard('pengajar')->user()->name }}</span>
+                <span class="admin_name">{{ Auth::guard('siswa')->user()->name }}</span>
             </div>
-
-            <div style="margin-top:100px">
-                <h3>Test Detail</h3>
-                <p>Course Name : {{ $test->course->name }}</p>
-                <p>Due Date : {{ $test->due_date }}</p>
-                <p>Questions : </p>
-                <p>{{ $test->question}}</p>
-
-                <ul>List Siswa :
-                    @foreach ($test->course->siswa as $s)
-                    {{-- //buat link ke pengerjaan masing2 --}}
-                        <li>{{ $s->name }}</li>
-                    @endforeach
-                </ul>
-            </div>
+            <p style="margin-top: 20px; margin-left: -990px; margin-right: 200px;">Pertanyaan : </p>
+            <p style="margin-top: 20px; margin-left: -990px; margin-right: 200px;">{!! $test->question !!}</p>
+            <form method="POST" action="/singletest/{{ $test->id_testpaper }}">
+                @csrf
+                {{-- <div style="margin-top: 510px; margin-left: -990px; margin-right: 200px">
+                    <label for="question" style="font-size: medium">Pertanyaan</label>
+                    <textarea class="form-control @error('question') is-invalid @enderror" id="question" name="question" readonly>{{ $test->question }}</textarea>
+                    @error('question')
+                        {{ $message }}
+                    @enderror
+                </div> --}}
+                <div style="margin-top: 20px; margin-left: -990px; margin-right: 200px;">
+                    <label for="answer" style="font-size: medium">Jawaban</label>
+                    <textarea class="form-control @error('answer') is-invalid @enderror" id="answer" name="answer" rows=10>{{ $test_siswa->value('answer') }}</textarea>
+                    @error('answer')
+                        {{ $message }}
+                    @enderror
+                </div>
+                <button class="btn btn-primary" type="submit"
+                    style="margin-top: 30px; margin-left: -990px; background: rgb(185, 39, 39)">Submit</button>
+            </form>
 
         </nav>
     </section>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Auth;
+use App\Models\Siswa;
 use App\Models\WaliMurid;
 use Illuminate\Http\Request;
 
@@ -86,6 +87,11 @@ class WaliMuridController extends Controller
          * memvalidasi request dengan attribut
          * name, email, password, phone number required
          */
+        $siswa = Siswa::where('email', $request->emailanak)->first();
+        // return dd($request->emailanak);
+        if ($siswa==null){
+            return redirect()->back();  
+        }
         $validated = $request->validate([
             'name' => 'required|min:3|max:255',
             'email' => 'required|email:dns|unique:wali_murid',
@@ -101,8 +107,12 @@ class WaliMuridController extends Controller
          * ke table Wali Murid
          * dan disimpan ke dalam variabel user
          */
-        $user = WaliMurid::create($validated);
-
+        $user = WaliMurid::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $validated['password'],
+            'phone_number' => $request->phone_number,
+            'id_siswa'=>$siswa->id_siswa]);
 
         // auth()->login($user);
         Auth::guard('walimurid')->login($user);

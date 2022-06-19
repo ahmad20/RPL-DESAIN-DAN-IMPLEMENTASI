@@ -22,7 +22,7 @@ return new class extends Migration
             // $table->unsignedBigInteger('course');
             // $table->unsignedBigInteger('wali_murid')->unique();
             // $table->foreign('course')->references('id_course')->on('course');  
-            // $table->foreign('wali_murid')->references('id_wali_murid')->on('wali_murid');  
+            $table->foreignId('id_walimurid')->nullable();  
             $table->timestamps();
         });
     }

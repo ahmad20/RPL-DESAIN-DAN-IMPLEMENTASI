@@ -32,13 +32,25 @@
         </nav>
         <div style="padding-top:100px; padding-left: 70px; margin-right:500px">
             <h3 style="margin-bottom: 20px">Course Detail</h3>
-            <p>Course Name : <a class="form-control" style="margin-left: 80px; margin-top:-25px; padding-top: 10px; margin-bottom: 20px">{{ $c->name }}</a></p>
-            <p>Description  : <a class="form-control" style="margin-left: 80px; margin-top:-25px; padding-top: 10px; margin-bottom: 20px">{{ $c->description }}</a></p>
-            <p>Created At : <a class="form-control" style="margin-left: 80px; margin-top:-25px; padding-top: 10px; margin-bottom: 20px">{{ $c->created_at }}</a></p>
-            <p>Last Update : <a class="form-control" style="margin-left: 80px; margin-top:-25px; padding-top: 10px; margin-bottom: 20px">{{ $c->updated_at }}</a></p>
-            <ul style="list-style-type: none">List Siswa :
+            <table style="width:auto; border:1px solid-black;">
+                <tr>
+                    <th>Course Name </th>
+                    <td>{{ ': '.$c->name }}</td>
+                </tr>
+                <tr>
+                    <th>Description </th>
+                    <td>{{ ': ' . $c->description }}</td>
+                </tr>
+            </table>
+            <p class="mb-2">List Siswa :</p>
+            <ul type>
             @foreach ($c->siswa as $s)
-                <li class="form-control" style="margin-left: 80px; margin-top:-25px; padding-top: 10px; margin-bottom: 30px">{{ $s->name }}</li>
+                <li class="m-1">{{ $s->name }}</li>
+                <li class="m-1">{{ $s->name }}</li>
+                <li class="m-1">{{ $s->name }}</li>
+                <li class="m-1">{{ $s->name }}</li>
+                <li class="m-1">{{ $s->name }}</li>
+                <li class="m-1">{{ $s->name }}</li>
             @endforeach
             </ul>
         </div>

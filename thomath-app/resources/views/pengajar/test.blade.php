@@ -65,7 +65,8 @@
             }
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script>
+        
+        {{-- <script>
             $(document).ready(function() {
                 $(".add").click(function() {
                     var total_q = parseInt($('#total_q').val()) + 1;
@@ -86,7 +87,7 @@
                     }
                 });
             });
-        </script>
+        </script> --}}
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">

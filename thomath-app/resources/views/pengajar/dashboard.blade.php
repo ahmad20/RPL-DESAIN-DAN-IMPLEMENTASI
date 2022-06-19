@@ -62,7 +62,7 @@
                 @foreach ($tp as $t)
                     <div class="card">
                         <div class="card-body">
-                            <a href="singletest/{{ $t->id_test_paper }}">
+                            <a href="singletest/{{ $t->id_testpaper }}">
                                 <h5 class="card-title">{{ $t->course->name }}</h5>
                                 <p class="card-text">{{ $t->due_date }}.</p>
                             </a>
